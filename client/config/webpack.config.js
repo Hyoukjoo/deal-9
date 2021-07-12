@@ -1,5 +1,6 @@
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 import { distPath, entryPath } from "./paths.js";
 
@@ -25,6 +26,10 @@ const config = {
       template: "./src/index.html",
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({ 
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].[hash].css"
+    })
   ],
   module: {
     rules: [
@@ -49,6 +54,15 @@ const config = {
           },
         },
       },
+      {
+        test: /\.scss$/,
+        use: [
+            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader",
+        ],
+        exclude: /node_modules/
+    },
     ],
   },
 };
