@@ -112,7 +112,7 @@ const createTables = async () => {
     )    
   `;
 
-  const res = await Promise.allSettled(
+  await Promise.all(
     [
       createUsersTable,
       createLocationsTable,
