@@ -4,20 +4,34 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack serve --config config/webpack.config.js",
-    "build": "webpack --config config/webpack.config.js"
+    "dev": "concurrently \"npm run build:dev\" \"npm run server\"",
+    "server": "cp src/server.js dist/server.js && nodemon dist/server.js",
+    "build:dev": "NODE_ENV=development webpack --config config/webpack.config.js",
+    "build:prod": "NODE_ENV=production webpack --config config/webpack.config.js && cp src/server.js dist/server.js",
+    "start": "npm run build:prod && nodemon dist/server.js"
   },
-  "author": "",
+  "author": "hyeokjoo, donggin",
   "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1"
+  },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.7",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "concurrently": "^6.2.0",
+    "css-loader": "^5.2.6",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.1.0",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.35.2",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.1.0",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
-  },
-  "type": "module",
-  "dependencies": {
-    "@babel/preset-env": "^7.14.7",
-    "babel-loader": "^8.2.2"
   }
 }
