@@ -1,8 +1,9 @@
-import Home from "../components/pages/home/home.js";
-import Product from "../components/pages/product/product.js";
+import Home from "@pages/home/home.js";
+import Product from "@pages/product/product.js";
 import { render } from "./render.js";
 
 const routes = {};
+let $root;
 let isInitRouter = false;
 
 const push = (pathname, data = {}) => {
@@ -24,11 +25,10 @@ const registerRoutes = (pathname, page) => {
   routes[pathname] = page;
 };
 
-export const initRouter = ($root) => {
+export const initRouter = ($app) => {
   if (isInitRouter) return;
 
-  console.log("init");
-
+  $root = $app;
   isInitRouter = true;
 
   registerRoutes("/", Home.getPage());
