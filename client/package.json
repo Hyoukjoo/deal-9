@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run build:dev\" \"npm run server\"",
-    "server": "cp src/server.js dist/server.js && nodemon dist/server.js",
+    "dev": "NODE_ENV=development webpack serve --config config/webpack.config.js",
+    "server": "nodemon src/server.js",
     "build:dev": "NODE_ENV=development webpack --config config/webpack.config.js",
-    "build:prod": "NODE_ENV=production webpack --config config/webpack.config.js && cp src/server.js dist/server.js",
-    "start": "npm run build:prod && nodemon dist/server.js"
+    "build:prod": "NODE_ENV=production webpack --config config/webpack.config.js",
+    "start": "npm run build:prod && npm run server",
+    "start:dev": "concurrently \"npm run build:dev\" \"npm run server\""
   },
   "author": "hyeokjoo, donggin",
   "license": "ISC",

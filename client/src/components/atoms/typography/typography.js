@@ -3,7 +3,7 @@ import "./style.scss";
 const textType = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"];
 const sizeType = ["large", "medium", "small", "x-small"];
 
-export const getTextElem = ({ type, size, text }) => {
+export const createTextElem = ({ type, size, text }) => {
   const isNotSupported = !textType.includes(type) || !sizeType.includes(size);
 
   if (isNotSupported) {
@@ -18,7 +18,7 @@ export const getTextElem = ({ type, size, text }) => {
   return $textElem;
 };
 
-export const getLinkElem = ({ size }) => {
+export const createLinkElem = ({ size }) => {
   const isNotSupported = !sizeType.slice(1).includes(size);
 
   if (isNotSupported) {

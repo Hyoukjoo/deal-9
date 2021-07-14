@@ -33,6 +33,7 @@ const clientConfig = {
   devServer: {
     contentBase: distPath,
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

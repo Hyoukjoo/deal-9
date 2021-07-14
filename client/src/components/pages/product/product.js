@@ -1,12 +1,22 @@
-import { getTextElem } from "@atoms/typography/typography.js";
+import { createTextElem } from "@atoms/typography/typography.js";
+import { getRouter } from "../../../utils/router.js";
 
 const state = {};
 
 const getPage = () => {
-  const $section = document.createElement("section");
-  const $title = getTextElem({ type: "h1", size: "large", text: "product" });
+  const router = getRouter();
 
-  $section.append($title);
+  const $section = document.createElement("section");
+  const $title = createTextElem({ type: "h1", size: "large", text: "product" });
+  const $button = document.createElement("button");
+
+  $button.addEventListener("click", (e) => {
+    router.back();
+  });
+
+  $button.textContent = "back!";
+
+  $section.append($title, $button);
 
   return $section;
 };
