@@ -5,13 +5,13 @@ import express from "express";
 import compression from "compression";
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8080;
 const version = process.env.VERSION || "1.0.0";
 
 app.use(compression());
 app.use(express.static("dist"));
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   fs.readFile(
     path.join(path.resolve(), "dist/index.html"),
     { encoding: "utf-8" },
