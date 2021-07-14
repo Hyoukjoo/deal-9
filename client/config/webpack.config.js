@@ -9,6 +9,7 @@ import {
   moleculePath,
   organismPath,
   pagePath,
+  publicPath,
   serverPath,
   templatePath,
   utilPath,
@@ -28,6 +29,7 @@ const clientConfig = {
   output: {
     filename: "bundle.js",
     path: distPath,
+    publicPath: publicPath,
   },
   watch: isDev,
   devServer: {
