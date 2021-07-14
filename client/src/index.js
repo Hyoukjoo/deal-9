@@ -1,11 +1,7 @@
-const print = (text) => {
-  console.log(text);
-};
+import "./styles/style.scss";
 
-print("hi2");
+import { initRouter } from "@utils/router.js";
 
-const $title = document.createElement("h1");
+const $app = document.querySelector("#app");
 
-$title.textContent = "HI hi zz";
-
-document.body.append($title);
+initRouter($app);
