@@ -1,0 +1,15 @@
+.category-list-item {
+  div {
+    margin: 0 auto;
+  }
+  span {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+  }
+  &:hover {
+    span {
+      color: var(--color-primary1);
+    }
+  }
+}
