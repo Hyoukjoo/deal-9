@@ -1,4 +1,4 @@
-import { createTextElem } from "@atoms/typography/typography.js";
+import { createTextAtom } from "@atoms/text/text.js";
 import { getRouter } from "@utils/router.js";
 import { createIconAtom } from "../../atoms/icon/icon.js";
 
@@ -8,7 +8,7 @@ const getPage = () => {
   const router = getRouter();
 
   const $section = document.createElement("section");
-  const $title = createTextElem({ type: "h1", size: "large", text: "home" });
+  const $title = createTextAtom({ type: "h1", size: "large", text: "home" });
   const $button = document.createElement("button");
 
   const $icon = createIconAtom({ type: "add" });
