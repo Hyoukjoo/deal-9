@@ -1,8 +1,8 @@
-import { createTextElem } from "../../atoms/typography/typography.js";
+import { createTextAtom } from "../../atoms/text/text.js";
 
 export const create404Template = () => {
   const $template = document.createElement("div");
-  const $title = createTextElem({
+  const $title = createTextAtom({
     type: "h1",
     size: "large",
     text: "404 Not Found",
