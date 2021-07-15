@@ -1,9 +1,9 @@
 import "./style.scss";
-import { linkType, linkSizeType } from "./constant.js";
+import { LINK_TYPE, LINK_SIZE_TYPE } from "./constant.js";
 
 export const createLinkAtom = ({ type, size, text }) => {
   const isNotSupported =
-    !linkType.includes(type) || !linkSizeType.includes(size);
+    !LINK_TYPE.includes(type) || !LINK_SIZE_TYPE.includes(size);
 
   if (isNotSupported) {
     throw Error(`This type or size is not supported`);

@@ -1,9 +1,9 @@
 import "./style.scss";
-import { textType, textSizeType } from "./constant.js";
+import { TEXT_TYPE, TEXT_SIZE_TYPE } from "./constant.js";
 
 export const createTextAtom = ({ type, size, text }) => {
   const isNotSupported =
-    !textType.includes(type) || !textSizeType.includes(size);
+    !TEXT_TYPE.includes(type) || !TEXT_SIZE_TYPE.includes(size);
 
   if (isNotSupported) {
     throw Error("This type or size is not supported");
