@@ -11,7 +11,7 @@ export const createTextAtom = ({ type, size, text }) => {
 
   const $textElem = document.createElement(type);
 
-  $textElem.classList.add("text", size);
+  $textElem.classList.add("text", `text-${size}`);
   $textElem.textContent = text;
 
   return $textElem;
