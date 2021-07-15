@@ -6,9 +6,9 @@ export const createImgBoxAtom = ({ type }) => {
   if (!imgBoxTypes.includes(type)) {
     throw Error(`This ${type} type is not supported `);
   }
-  const $img = document.createElement("div");
-  $img.classList.add("img-box");
-  $img.classList.add(`img-box-${type}`);
+  const $imgBox = document.createElement("div");
+  $imgBox.classList.add("img-box");
+  $imgBox.classList.add(`img-box-${type}`);
 
-  return $img;
+  return $imgBox;
 };
