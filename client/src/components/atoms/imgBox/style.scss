@@ -1,0 +1,30 @@
+.img-box {
+  background-color: var(--color-off-white);
+  overflow: hidden;
+  border: 1px solid var(--color-gray3);
+  border-radius: 8px;
+  &-small {
+    width: 40px;
+    height: 40px;
+  }
+  &-medium {
+    width: 76px;
+    height: 76px;
+  }
+  &-large {
+    width: 106px;
+    height: 106px;
+  }
+  &-gradient {
+    width: 320px;
+    height: 320px;
+    border: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.24) 0%,
+      rgba(0, 0, 0, 0) 16.52%,
+      rgba(0, 0, 0, 0) 87.36%,
+      rgba(0, 0, 0, 0.24) 100%
+    );
+  }
+}
