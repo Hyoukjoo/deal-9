@@ -1,6 +1,12 @@
 export const createImgAtom = ({ src, width, height }) => {
   const $img = document.createElement("img");
   $img.src = src;
-  $img.width = width;
-  $img.height = height;
+  if (width) {
+    $img.width = width;
+  }
+  if (height) {
+    $img.height = height;
+  }
+
+  return $img;
 };
