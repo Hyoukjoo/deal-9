@@ -8,7 +8,7 @@ export const createNormalButton = ({
   onClick,
   label,
   size = "medium",
-  disabled,
+  disabled = false,
 }) => {
   const isNotSupported = !BUTTON_SIZE.includes(size);
 
