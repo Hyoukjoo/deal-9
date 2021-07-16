@@ -1,3 +1,5 @@
+// 페이지를 유틸로 불러오는게 아니라 index.js 로 불러서 처리하는건 어떨까요?
+// 너무 직접 붙어버리는거 같기도 하고, 유틸이라는 폴더에 페이지가 들어오는게 부자연스러운 거 같아요!
 import Home from "@pages/home/home.js";
 import Product from "@pages/product/product.js";
 import { render } from "./render.js";
