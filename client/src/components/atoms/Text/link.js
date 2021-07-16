@@ -11,7 +11,7 @@ export const createLinkAtom = ({ type, size, text }) => {
 
   const $linkElem = document.createElement(type);
 
-  $linkElem.classList.add("link", size);
+  $linkElem.classList.add("link", `text-${size}`);
   $linkElem.textContent = text;
 
   return $linkElem;
