@@ -1,7 +1,7 @@
 import "./style.scss";
 import { TEXT_TYPE, TEXT_SIZE_TYPE } from "./constant.js";
 
-export const createTextAtom = ({ type, size, text }) => {
+const createTextAtom = ({ type, size, text }) => {
   const isNotSupported =
     !TEXT_TYPE.includes(type) || !TEXT_SIZE_TYPE.includes(size);
 
@@ -16,3 +16,5 @@ export const createTextAtom = ({ type, size, text }) => {
 
   return $textElem;
 };
+
+export default createTextAtom;

@@ -1,9 +1,4 @@
-import Home from "./home/home.js";
-import Product from "./product/product.js";
+import Home from "@pages/home";
+import Product from "@pages/product";
 
-const pages = {
-  Home,
-  Product,
-};
-
-export default pages;
+export { Home, Product };

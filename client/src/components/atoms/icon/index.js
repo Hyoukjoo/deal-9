@@ -19,7 +19,7 @@ const iconType = [
   "user",
 ];
 
-export const createIconAtom = ({ type }) => {
+const createIconAtom = ({ type }) => {
   if (!iconType.includes(type)) {
     throw Error(`This ${type} type is not supported `);
   }
@@ -31,3 +31,5 @@ export const createIconAtom = ({ type }) => {
 
   return $img;
 };
+
+export default createIconAtom;

@@ -1,8 +1,8 @@
-import Home from "@pages/home/home.js";
-import Product from "@pages/product/product.js";
+import { Home, Product } from "@pages";
 import { render } from "./render.js";
 
 const routes = {};
+
 let $root;
 let isInitRouter = false;
 

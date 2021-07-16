@@ -1,10 +1,9 @@
 import "./style.scss";
-import { createButtonAtom } from "@atoms/Button/button.js";
-import { createLinkAtom } from "../../../atoms/Text/link.js";
+import { createButtonAtom, createLinkAtom } from "@atoms";
 
 const BUTTON_SIZE = ["medium", "large"];
 
-export const createNormalButton = ({
+const createNormalButtonMolecule = ({
   onClick,
   label,
   size = "medium",
@@ -29,3 +28,5 @@ export const createNormalButton = ({
 
   return $button;
 };
+
+export default createNormalButtonMolecule;

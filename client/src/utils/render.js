@@ -1,4 +1,4 @@
-import { create404Page } from "../components/pages/404/404.js";
+import create404Page from "@pages/404";
 
 const clearChild = (parent) => {
   while (parent.lastChild) {

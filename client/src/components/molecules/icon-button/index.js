@@ -1,7 +1,7 @@
 import "./style.scss";
 import { createIconAtom } from "@atoms/icon/icon.js";
 
-export const createIconButtonMolecule = ({ type }) => {
+const createIconButtonMolecule = ({ type }) => {
   const $iconButton = document.createElement("button");
   const $icon = createIconAtom({ type });
 
@@ -10,3 +10,5 @@ export const createIconButtonMolecule = ({ type }) => {
 
   return $iconButton;
 };
+
+export default createIconButtonMolecule;

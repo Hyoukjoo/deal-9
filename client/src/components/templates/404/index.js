@@ -1,6 +1,6 @@
-import { createTextAtom } from "../../atoms/text/text.js";
+import { createTextAtom } from "@atoms";
 
-export const create404Template = () => {
+const create404Template = () => {
   const $template = document.createElement("div");
   const $title = createTextAtom({
     type: "h1",
@@ -12,3 +12,5 @@ export const create404Template = () => {
 
   return $template;
 };
+
+export default create404Template;

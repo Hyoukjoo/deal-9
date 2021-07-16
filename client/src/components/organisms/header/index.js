@@ -1,6 +1,6 @@
 import "./style.scss";
 
-export const createHeaderOrganism = ({ type, left, middle, right }) => {
+const createHeaderOrganism = ({ type, left, middle, right }) => {
   const $header = document.createElement("header");
   const $emptyEl = document.createElement("div");
 
@@ -9,3 +9,5 @@ export const createHeaderOrganism = ({ type, left, middle, right }) => {
 
   return $header;
 };
+
+export default createHeaderOrganism;

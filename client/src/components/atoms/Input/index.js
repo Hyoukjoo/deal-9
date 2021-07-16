@@ -1,7 +1,7 @@
 import "./style.scss";
 import { INPUT_SIZE_TYPE } from "./constant.js";
 
-export const createInputAtom = ({
+const createInputAtom = ({
   onChange = () => {},
   placeholder = "",
   size = "large",
@@ -20,3 +20,5 @@ export const createInputAtom = ({
 
   return $input;
 };
+
+export default createInputAtom;

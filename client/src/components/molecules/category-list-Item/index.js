@@ -1,8 +1,7 @@
 import "./style.scss";
-import { createTextAtom } from "@atoms/text/text.js";
-import { createImgBoxAtom } from "@atoms/imgBox/imgBox.js";
+import { createTextAtom, createImgBoxAtom } from "@atoms";
 
-export const createCategoryListItemMolecule = ({ text }) => {
+const createCategoryListItemMolecule = ({ text }) => {
   const $categoryListItem = document.createElement("div");
   const $imgBox = createImgBoxAtom({ type: "small" });
   const $text = createTextAtom({ type: "span", size: "x-small", text });
@@ -12,3 +11,5 @@ export const createCategoryListItemMolecule = ({ text }) => {
 
   return $categoryListItem;
 };
+
+export default createCategoryListItemMolecule;
