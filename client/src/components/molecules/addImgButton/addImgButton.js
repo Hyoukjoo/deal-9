@@ -3,7 +3,7 @@ import { createImgBoxAtom } from "@atoms/imgBox/imgBox.js";
 import { createIconAtom } from "@atoms/icon/icon.js";
 import { createTextAtom } from "@atoms/text/text.js";
 
-export const createAddImgButtonMolcule = ({ imgCount }) => {
+export const createAddImgButtonMolecule = ({ imgCount }) => {
   const $addImgButton = document.createElement("button");
   const $imgBox = createImgBoxAtom({ type: "medium" });
   // TODO: icon 색상 변경
