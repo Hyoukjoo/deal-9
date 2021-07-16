@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+  &-white {
+    background-color: var(--color-white);
+  }
+  &-off-white {
+    background-color: var(--color-off-white);
+  }
+  &-invisible {
+    background-color: transparent;
+  }
+}
