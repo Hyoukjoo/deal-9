@@ -1,35 +1,29 @@
-import "./style.scss";
+import ICON from "./constant.js";
 
-const iconType = [
-  "add",
-  "category",
-  "check",
-  "close",
-  "heart",
-  "image",
-  "log-out",
-  "map-pin",
-  "menu",
-  "message-square",
-  "more-vertical",
-  "send",
-  "short-arrow-down",
-  "short-arrow-left",
-  "short-arrow-right",
-  "user",
-];
+const createIconAtom = ({
+  width = 24,
+  height = 24,
+  color = "#222222",
+  fill = "none",
+  type,
+}) => {
+  const $icon = ICON[type]({ color, fill });
 
-const createIconAtom = ({ type }) => {
-  if (!iconType.includes(type)) {
-    throw Error(`This ${type} type is not supported `);
+  const isNotSupported = $icon === undefined;
+
+  if (isNotSupported) {
+    throw Error(`This ${type} icon is not supported `);
   }
 
-  const $img = document.createElement("img");
+  const $svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  $svg.setAttribute("width", width);
+  $svg.setAttribute("height", height);
+  $svg.setAttribute("fill", fill);
+  $svg.setAttribute("viewBox", `0 0 24 24`);
 
-  $img.classList.add("atom-icon");
-  $img.src = `/public/icons/${type}.svg`;
+  $svg.innerHTML = $icon;
 
-  return $img;
+  return $svg;
 };
 
 export default createIconAtom;
