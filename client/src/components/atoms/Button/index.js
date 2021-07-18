@@ -1,6 +1,6 @@
 import "./style.scss";
 
-export const createButtonAtom = ({ onClick = () => {}, label = "" }) => {
+const createButtonAtom = ({ onClick = () => {}, label = "" }) => {
   const $button = document.createElement("button");
 
   $button.classList.add("atom");
@@ -9,3 +9,5 @@ export const createButtonAtom = ({ onClick = () => {}, label = "" }) => {
 
   return $button;
 };
+
+export default createButtonAtom;

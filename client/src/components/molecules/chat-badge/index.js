@@ -1,7 +1,7 @@
 import "./style.scss";
 import { createTextAtom } from "@atoms/text/text.js";
 
-export const createChatBadgeMolecule = ({ text }) => {
+const createChatBadgeMolecule = ({ text }) => {
   const $chatBadge = createTextAtom({
     type: "span",
     size: "x-small",
@@ -11,3 +11,5 @@ export const createChatBadgeMolecule = ({ text }) => {
 
   return $chatBadge;
 };
+
+export default createChatBadgeMolecule;

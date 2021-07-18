@@ -1,5 +1,5 @@
-import { createTextAtom } from "@atoms/Text/text.js";
-import { getRouter } from "../../../utils/router.js";
+import { createTextAtom } from "@atoms/index.js";
+import { getRouter } from "@utils/router.js";
 
 const state = {};
 

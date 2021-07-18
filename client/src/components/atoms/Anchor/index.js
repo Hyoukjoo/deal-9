@@ -1,7 +1,7 @@
 import "./style.scss";
-import { createLinkAtom } from "@atoms/Text/link.js";
+import createLinkAtom from "@atoms/text/link.js";
 
-export const createAnchorAtom = ({ href, label, size = "medium" }) => {
+const createAnchorAtom = ({ href, label, size = "medium" }) => {
   const $anchor = createLinkAtom({ type: "a", size, text: label });
 
   $anchor.classList.add("atom");
@@ -9,3 +9,5 @@ export const createAnchorAtom = ({ href, label, size = "medium" }) => {
 
   return $anchor;
 };
+
+export default createLinkAtom;

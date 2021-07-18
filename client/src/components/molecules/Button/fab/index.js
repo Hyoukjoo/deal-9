@@ -1,8 +1,7 @@
 import "./style.scss";
-import { createButtonAtom } from "../../../atoms/Button/button.js";
-import { createIconAtom } from "../../../atoms/Icon/icon.js";
+import { createButtonAtom, createIconAtom } from "@atoms";
 
-export const createFabButton = ({ onClick = () => {} }) => {
+const createFabButtonMolecule = ({ onClick = () => {} }) => {
   const $button = createButtonAtom({ onClick });
   const $icon = createIconAtom({ type: "add" });
 
@@ -12,3 +11,5 @@ export const createFabButton = ({ onClick = () => {} }) => {
 
   return $button;
 };
+
+export default createFabButtonMolecule;

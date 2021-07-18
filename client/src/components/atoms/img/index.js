@@ -1,4 +1,4 @@
-export const createImgAtom = ({ src, width, height }) => {
+const createImgAtom = ({ src, width, height }) => {
   const $img = document.createElement("img");
   $img.src = src;
   if (width) {
@@ -10,3 +10,5 @@ export const createImgAtom = ({ src, width, height }) => {
 
   return $img;
 };
+
+export default createImgAtom;

@@ -1,9 +1,7 @@
 import "./style.scss";
-import { createImgBoxAtom } from "@atoms/imgBox/imgBox.js";
-import { createIconAtom } from "@atoms/icon/icon.js";
-import { createTextAtom } from "@atoms/text/text.js";
+import { createImgBoxAtom, createIconAtom, createTextAtom } from "@atoms";
 
-export const createAddImgButtonMolecule = ({ imgCount }) => {
+const createAddImgButtonMolecule = ({ imgCount }) => {
   const $addImgButton = document.createElement("button");
   const $imgBox = createImgBoxAtom({ type: "medium" });
   // TODO: icon 색상 변경
@@ -21,3 +19,5 @@ export const createAddImgButtonMolecule = ({ imgCount }) => {
 
   return $addImgButton;
 };
+
+export default createAddImgButtonMolecule;

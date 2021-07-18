@@ -2,7 +2,7 @@ import "./style.scss";
 
 const imgBoxTypes = ["small", "medium", "large", "gradient"];
 
-export const createImgBoxAtom = ({ type }) => {
+const createImgBoxAtom = ({ type }) => {
   if (!imgBoxTypes.includes(type)) {
     throw Error(`This ${type} type is not supported `);
   }
@@ -12,3 +12,5 @@ export const createImgBoxAtom = ({ type }) => {
 
   return $imgBox;
 };
+
+export default createImgBoxAtom;
