@@ -4,6 +4,7 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 import {
   atomPath,
+  commonPath,
   distPath,
   entryPath,
   moleculePath,
@@ -31,7 +32,7 @@ const clientConfig = {
     path: distPath,
     publicPath: publicPath,
   },
-  watch: isDev,
+  watch: false,
   devServer: {
     contentBase: distPath,
     hot: true,
@@ -57,6 +58,7 @@ const clientConfig = {
       "@templates": templatePath,
       "@pages": pagePath,
       "@utils": utilPath,
+      "@common": commonPath,
     },
   },
 };

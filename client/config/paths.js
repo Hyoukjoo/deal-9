@@ -17,3 +17,4 @@ export const templatePath = path.join(componentPath, "templates");
 export const pagePath = path.join(componentPath, "pages");
 
 export const utilPath = path.join(srcPath, "utils");
+export const commonPath = path.join(srcPath, "common");
