@@ -1,5 +1,5 @@
 import "./style.scss";
-import { createLinkAtom } from "@atoms/text/link.js";
+import { createLinkAtom } from "@atoms";
 
 const createChatBubbleMolecule = ({ text, direction }) => {
   const $chatBubble = createLinkAtom({

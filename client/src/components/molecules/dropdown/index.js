@@ -1,5 +1,5 @@
 import "./style.scss";
-import { createButtonAtom } from "@atoms/button/button.js";
+import { createButtonAtom } from "@atoms";
 
 const createDropdownMolecule = ({ dropper, items, top, right, left, down }) => {
   const $dropdown = document.createElement("div");

@@ -1,5 +1,5 @@
 import "./style.scss";
-import { createTextAtom } from "@atoms/text/text.js";
+import { createTextAtom } from "@atoms";
 
 const createChatBadgeMolecule = ({ text }) => {
   const $chatBadge = createTextAtom({
