@@ -1,0 +1,10 @@
+export const TITLE_ACTIVE = "#222222";
+export const GRAY1 = "#888888";
+export const GRAY2 = "#bbbbbb";
+export const GRAY3 = "#d7d7d7";
+export const OFF_WHITE = "#f6f6f6";
+export const WHITE = "#ffffff";
+export const PRIMARY1 = "#2ac1bc";
+export const PRIMARY2 = "#a0e1e0";
+export const PRIMARY3 = "#219a95";
+export const RED = "#f45452";
