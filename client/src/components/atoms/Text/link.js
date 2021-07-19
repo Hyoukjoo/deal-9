@@ -1,7 +1,7 @@
 import "./style.scss";
 import { LINK_TYPE, LINK_SIZE_TYPE } from "./constant.js";
 
-const createLinkAtom = ({ type, size, text }) => {
+const createLinkAtom = ({ type = "p", size = "small", text = "" }) => {
   const isNotSupported =
     !LINK_TYPE.includes(type) || !LINK_SIZE_TYPE.includes(size);
 
