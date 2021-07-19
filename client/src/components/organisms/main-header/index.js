@@ -10,7 +10,9 @@ const createMainHeaderOrganism = ({ location }) => {
 
   const $left = document.createElement("div");
   const $categoryButton = createIconButtonMolecule({
-    onclick: router.push("/category"),
+    onClick: () => {
+      router.push("/category");
+    },
     type: "category",
     color: WHITE,
   });
