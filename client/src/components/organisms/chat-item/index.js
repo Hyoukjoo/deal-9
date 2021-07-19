@@ -1,7 +1,7 @@
 import "./style.scss";
 
 import { createLinkAtom, createTextAtom } from "@atoms";
-import { createChatBadgeMolecule, createProductImgMoleclue } from "@molecules";
+import { createChatBadgeMolecule, createProductImgMolecule } from "@molecules";
 
 const createChatItemOrganism = ({
   username,
@@ -18,7 +18,7 @@ const createChatItemOrganism = ({
   });
   const $message = createTextAtom({ text: message });
   const $timestamp = createTextAtom({ size: "x-small", text: timestamp });
-  const $imageBox = createProductImgMoleclue({ type: "small", src: imgSrc });
+  const $imageBox = createProductImgMolecule({ type: "small", src: imgSrc });
 
   $li.classList.add("chat-item");
   $username.classList.add("username");
