@@ -1,6 +1,4 @@
-.icon-button {
-  all: unset;
-  &:hover {
-    cursor: pointer;
-  }
+button.icon-button {
+  display: flex;
+  align-items: center;
 }
