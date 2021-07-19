@@ -1,5 +1,7 @@
 .icon-button {
-  all: unset;
+  border: none;
+  background-color: transparent;
+  outline: none;
   &:hover {
     cursor: pointer;
   }
