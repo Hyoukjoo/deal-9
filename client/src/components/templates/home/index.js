@@ -20,6 +20,7 @@ const createHomeTemplate = ({ location, productList }) => {
   });
 
   $homeTemplate.append($header, $productList);
+  $homeTemplate.classList.add("home-template");
 
   return $homeTemplate;
 };

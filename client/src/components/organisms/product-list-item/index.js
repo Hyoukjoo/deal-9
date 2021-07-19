@@ -28,10 +28,14 @@ const createProductListItemOrganism = ({
   const $productInfoHeader = document.createElement("header");
   const $title = createLinkAtom({ type: "span", size: "medium", text: title });
   // TODO: heart molecule(organism?) api, click event 붙여서 따로 만들기
-  const $heart = createIconButtonMolecule({ type: "heart" });
+  const $heart = createIconButtonMolecule({
+    type: "heart",
+    with: "20px",
+    height: "20px",
+  });
   //TODO: 드랍다운
   const $menu = createIconButtonMolecule({ type: "menu" });
-  const $productInfoHeaderButton = isSaler ? $heart : $menu;
+  const $productInfoHeaderButton = isSaler ? $menu : $heart;
   $productInfoHeader.append($title, $productInfoHeaderButton);
 
   const $productInfoMain = document.createElement("main");
