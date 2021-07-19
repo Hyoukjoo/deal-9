@@ -1,10 +1,9 @@
 import "./style.scss";
 import { createTextAtom, createLinkAtom } from "@atoms";
 import { createProductImgMoleclue } from "@molecules";
-import { priceFormat } from "../../../utils/helper.js";
+import { priceFormat } from "@utils/helper.js";
 
 const createInfoProductMoleCule = ({ src, title, price, status }) => {
-  console.log(src, title, price, status);
   const $infoProduct = document.createElement("div");
 
   const $productImg = createProductImgMoleclue({ type: "small", src });

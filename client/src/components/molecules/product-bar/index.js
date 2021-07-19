@@ -1,6 +1,6 @@
 import "./style.scss";
 import { createDividerAtom, createLinkAtom } from "@atoms";
-import { priceFormat } from "../../../utils/helper.js";
+import { priceFormat } from "@utils/helper.js";
 import {
   createIconButtonMolecule,
   createNormalButtonMolecule,
