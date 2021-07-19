@@ -1,5 +1,4 @@
 import { createTextAtom, createIconAtom } from "@atoms";
-import { createMainHeaderOrganism } from "@organisms";
 import { getRouter } from "@utils/router.js";
 
 const state = {};
@@ -19,7 +18,7 @@ const getPage = () => {
 
   $button.textContent = "product로 이동!";
 
-  $section.append(createMainHeaderOrganism({}), $title, $button, $icon);
+  $section.append($title, $button, $icon);
 
   return $section;
 };
