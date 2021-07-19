@@ -1,12 +1,12 @@
 import "./style.scss";
 import { createTextAtom, createLinkAtom } from "@atoms";
-import { createProductImgMoleclue } from "@molecules";
+import { createProductImgMolecule } from "@molecules";
 import { priceFormat } from "@utils/helper.js";
 
 const createInfoProductMoleCule = ({ src, title, price, status }) => {
   const $infoProduct = document.createElement("div");
 
-  const $productImg = createProductImgMoleclue({ type: "small", src });
+  const $productImg = createProductImgMolecule({ type: "small", src });
 
   const $productDescription = document.createElement("div");
   const $title = createTextAtom({
