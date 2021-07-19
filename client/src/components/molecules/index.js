@@ -14,6 +14,7 @@ import createAlertMolecule from "@molecules/alert";
 import createLocationBarMolecule from "@molecules/location-bar";
 import createInfoSalerMolecule from "@molecules/info-saler";
 import createProductBarMolecule from "@molecules/product-bar";
+import createPopupInputMolecule from "@molecules/popup-input";
 
 export {
   createAddImgButtonMolecule,
@@ -32,4 +33,5 @@ export {
   createLocationBarMolecule,
   createInfoSalerMolecule,
   createProductBarMolecule,
+  createPopupInputMolecule,
 };
