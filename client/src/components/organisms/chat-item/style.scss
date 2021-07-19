@@ -1,0 +1,41 @@
+li.chat-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas:
+    "username timestamp image"
+    "message count image";
+  padding: 16px;
+  width: 320px;
+  height: 72px;
+
+  &.has-new-message {
+    background-color: var(--color-off-white);
+  }
+
+  & > * {
+    margin: 0;
+  }
+
+  & > p.username {
+    grid-area: username;
+    align-self: flex-end;
+  }
+
+  & > p.message {
+    grid-area: message;
+  }
+
+  & > p.timestamp {
+    grid-area: timestamp;
+  }
+
+  & > span.count {
+    grid-area: count;
+    justify-self: right;
+  }
+
+  & > div {
+    grid-area: image;
+    margin-left: 16px;
+  }
+}
