@@ -10,4 +10,4 @@ const createAnchorAtom = ({ href, label, size = "medium" }) => {
   return $anchor;
 };
 
-export default createLinkAtom;
+export default createAnchorAtom;

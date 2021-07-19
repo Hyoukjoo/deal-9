@@ -1,4 +1,4 @@
-import "./styles/style.scss";
+import "./common/styles/style.scss";
 
 import { initRouter } from "@utils/router.js";
 

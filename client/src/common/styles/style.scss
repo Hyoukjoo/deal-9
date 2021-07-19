@@ -1,16 +1,22 @@
-@import "font.scss";
+@import "./font.scss";
+@import "./layout.scss";
 
 :root {
   --color-title-active: #222222;
   --color-gray1: #888888;
   --color-gray2: #bbbbbb;
   --color-gray3: #d7d7d7;
+  --color-gray5: #e0e0e0;
   --color-off-white: #f6f6f6;
   --color-white: #ffffff;
   --color-primary1: #2ac1bc;
   --color-primary2: #a0e1e0;
   --color-primary3: #219a95;
   --color-red: #f45452;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -20,15 +26,26 @@ html {
 body {
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-ul {
-  all: unset;
+ul,
+li {
+  list-style: none;
 }
 
 button {
-  all: unset;
   &:hover {
     cursor: pointer;
   }
+}
+
+#app {
+  width: 375px;
+  height: 667px;
+  border: 1px solid var(--color-gray3);
 }
