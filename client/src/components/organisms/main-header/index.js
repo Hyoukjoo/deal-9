@@ -2,12 +2,15 @@ import "./style.scss";
 import { createIconAtom, createLinkAtom, createButtonAtom } from "@atoms";
 import { createIconButtonMolecule } from "@molecules";
 import { WHITE } from "@common/styles/color.js";
+import { getRouter } from "@utils/router.js";
 
 const createMainHeaderOrganism = ({ location }) => {
+  const router = getRouter();
   const $header = document.createElement("header");
 
   const $left = document.createElement("div");
   const $categoryButton = createIconButtonMolecule({
+    onclick: router.push("/category"),
     type: "category",
     color: WHITE,
   });
