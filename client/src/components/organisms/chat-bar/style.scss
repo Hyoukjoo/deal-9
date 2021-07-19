@@ -1,0 +1,9 @@
+div.chat-bar {
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  justify-items: center;
+  align-items: center;
+  padding: 8px;
+  min-width: 320px;
+  background-color: var(--color-off-white);
+}
