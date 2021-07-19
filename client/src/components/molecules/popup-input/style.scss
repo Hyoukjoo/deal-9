@@ -1,0 +1,44 @@
+div.popup-input {
+  display: grid;
+  grid-template-areas:
+    "message message"
+    "input input"
+    "cancel perform";
+  justify-content: space-between;
+  padding: 16px 20px;
+  min-width: 288px;
+
+  & > *:not(input) {
+    margin: 0;
+    padding: 0;
+  }
+
+  & > p {
+    grid-area: message;
+    margin-bottom: 8px;
+  }
+
+  & > input {
+    grid-area: input;
+    margin-bottom: 16px;
+  }
+
+  & > button:first-of-type {
+    grid-area: cancel;
+    text-align: left;
+  }
+
+  & > button:last-of-type {
+    grid-area: perform;
+    text-align: right;
+    color: var(--color-primary1);
+  }
+
+  & > button {
+    font-weight: 500;
+  }
+
+  & > button:disabled {
+    color: var(--color-gray1);
+  }
+}

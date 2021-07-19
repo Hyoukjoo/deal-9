@@ -13,6 +13,7 @@ import createStatusButtonMolecule from "@molecules/button/status";
 import createAlertMolecule from "@molecules/alert";
 import createLocationBarMolecule from "@molecules/location-bar";
 import createInfoSalerMolecule from "@molecules/info-saler";
+import createPopupInputMolecule from "@molecules/popup-input";
 
 export {
   createAddImgButtonMolecule,
@@ -30,4 +31,5 @@ export {
   createAlertMolecule,
   createLocationBarMolecule,
   createInfoSalerMolecule,
+  createPopupInputMolecule,
 };
