@@ -1,0 +1,10 @@
+.location-bar {
+  background-color: var(--color-white);
+  box-shadow: inset 0px 1px 0px #d7d7d7;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 2px;
+  }
+}
