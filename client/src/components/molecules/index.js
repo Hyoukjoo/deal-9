@@ -1,4 +1,4 @@
-import createAddImgButtonMolecule from "@molecules/add-img";
+import createAddImgButtonMolecule from "@molecules/button/add-img";
 import createCategoryButtonMolecule from "@molecules/button/category";
 import createFabButtonMolecule from "@molecules/button/fab";
 import createNormalButtonMolecule from "@molecules/button/normal";
@@ -11,6 +11,7 @@ import createDropdownMolecule from "@molecules/dropdown";
 import createLocationButtonMolecule from "@molecules/button/location";
 import createStatusButtonMolecule from "@molecules/button/status";
 import createAlertMolecule from "@molecules/alert";
+import createInfoSalerMolecule from "@molecules/info-saler";
 
 export {
   createAddImgButtonMolecule,
@@ -26,4 +27,5 @@ export {
   createLocationButtonMolecule,
   createStatusButtonMolecule,
   createAlertMolecule,
+  createInfoSalerMolecule,
 };
