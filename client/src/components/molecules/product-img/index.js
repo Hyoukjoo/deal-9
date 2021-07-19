@@ -1,7 +1,7 @@
 import "./style.scss";
 import { createImgBoxAtom } from "@atoms";
 
-const createProductImgMoleclue = ({ type, src }) => {
+const createProductImgMolecule = ({ type, src }) => {
   const $imgBox = createImgBoxAtom({ type });
 
   $imgBox.classList.add("product-img");
@@ -15,4 +15,4 @@ const createProductImgMoleclue = ({ type, src }) => {
   return $imgBox;
 };
 
-export default createProductImgMoleclue;
+export default createProductImgMolecule;
