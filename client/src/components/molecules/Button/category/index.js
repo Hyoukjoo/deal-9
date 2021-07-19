@@ -1,5 +1,5 @@
 import "./style.scss";
-import { createButtonAtom, createLinkAtom } from "@atom";
+import { createButtonAtom, createLinkAtom } from "@atoms";
 
 const createCategoryButtonMolecule = ({ onClick, label }) => {
   const $button = createButtonAtom({ onClick });
