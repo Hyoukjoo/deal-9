@@ -6,6 +6,7 @@ import createIconAtom from "@atoms/icon";
 import createImgAtom from "@atoms/img";
 import createImgBoxAtom from "@atoms/img-box";
 import createInputAtom from "@atoms/input";
+import createShadowBoxAtom from "@atoms/div/shadow-box";
 
 export {
   createTextAtom,
@@ -16,4 +17,5 @@ export {
   createImgAtom,
   createImgBoxAtom,
   createInputAtom,
+  createShadowBoxAtom,
 };

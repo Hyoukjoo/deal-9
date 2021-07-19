@@ -1,0 +1,33 @@
+div.alert {
+  display: grid;
+  grid-template-areas:
+    "message message"
+    "cancel perform";
+  padding: 16px 20px;
+  min-width: 288px;
+
+  & > * {
+    margin: 0;
+    padding: 0;
+  }
+
+  & > p {
+    grid-area: message;
+    margin-bottom: 16px;
+  }
+
+  & > button {
+    font-weight: 500;
+  }
+
+  & > button:first-of-type {
+    grid-area: cancel;
+    justify-self: start;
+  }
+
+  & > button:last-of-type {
+    grid-area: perform;
+    justify-self: end;
+    color: var(--color-red);
+  }
+}

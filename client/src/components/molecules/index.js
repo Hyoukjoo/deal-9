@@ -10,6 +10,7 @@ import createIconButtonMolecule from "@molecules/icon-button";
 import createDropdownMolecule from "@molecules/dropdown";
 import createLocationButtonMolecule from "@molecules/button/location";
 import createStatusButtonMolecule from "@molecules/button/status";
+import createAlertMolecule from "@molecules/alert";
 
 export {
   createAddImgButtonMolecule,
@@ -24,4 +25,5 @@ export {
   createDropdownMolecule,
   createLocationButtonMolecule,
   createStatusButtonMolecule,
+  createAlertMolecule,
 };
