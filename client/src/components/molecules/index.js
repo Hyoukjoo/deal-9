@@ -17,6 +17,8 @@ import createProductBarMolecule from "@molecules/product-bar";
 import createPopupInputMolecule from "@molecules/popup-input";
 import createProductImgMolecule from "@molecules/product-img";
 import createInfoProductMoleCule from "@molecules/info-product";
+import createTextWithMiddotMolecule from "@molecules/text-with-middot";
+import createIconWithTextMolecule from "@molecules/icon-with-text";
 
 export {
   createAddImgButtonMolecule,
@@ -38,4 +40,6 @@ export {
   createPopupInputMolecule,
   createProductImgMolecule,
   createInfoProductMoleCule,
+  createTextWithMiddotMolecule,
+  createIconWithTextMolecule,
 };
