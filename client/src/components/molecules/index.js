@@ -15,7 +15,7 @@ import createLocationBarMolecule from "@molecules/location-bar";
 import createInfoSalerMolecule from "@molecules/info-saler";
 import createProductBarMolecule from "@molecules/product-bar";
 import createPopupInputMolecule from "@molecules/popup-input";
-import createProductImgMoleclue from "@molecules/product-img";
+import createProductImgMolecule from "@molecules/product-img";
 import createInfoProductMoleCule from "@molecules/info-product";
 
 export {
@@ -36,6 +36,6 @@ export {
   createInfoSalerMolecule,
   createProductBarMolecule,
   createPopupInputMolecule,
-  createProductImgMoleclue,
+  createProductImgMolecule,
   createInfoProductMoleCule,
 };
