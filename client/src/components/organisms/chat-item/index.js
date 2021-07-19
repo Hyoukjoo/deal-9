@@ -1,13 +1,14 @@
 import "./style.scss";
 
-import { createLinkAtom, createTextAtom, createImgBoxAtom } from "@atoms";
-import { createChatBadgeMolecule } from "@molecules";
+import { createLinkAtom, createTextAtom } from "@atoms";
+import { createChatBadgeMolecule, createProductImgMoleclue } from "@molecules";
 
 const createChatItemOrganism = ({
   username,
   message,
   timestamp,
   count = 0,
+  imgSrc,
 }) => {
   const hasNewMessage = count > 0;
 
@@ -17,8 +18,7 @@ const createChatItemOrganism = ({
   });
   const $message = createTextAtom({ text: message });
   const $timestamp = createTextAtom({ size: "x-small", text: timestamp });
-  // TODO: 이미지 넣을 수 있도록 수정
-  const $imageBox = createImgBoxAtom({ type: "small" });
+  const $imageBox = createProductImgMoleclue({ type: "small", src: imgSrc });
 
   $li.classList.add("chat-item");
   $username.classList.add("username");
