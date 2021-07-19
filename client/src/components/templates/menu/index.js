@@ -23,7 +23,7 @@ const createMenuTemplate = () => {
     middle: $pageName,
   });
 
-  const $tabs = createTabBarOrganism();
+  const $tabs = createTabBarOrganism({ selectedTabIdx: 2 });
 
   $menuTemplate.append($header, $tabs);
   return $menuTemplate;
