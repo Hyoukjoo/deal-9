@@ -1,5 +1,6 @@
 .home-template {
   height: 100%;
+  position: relative;
   ul {
     height: calc(100% - 56px);
     overflow-y: auto;
@@ -8,5 +9,10 @@
         border-top: 1px solid var(--color-gray3);
       }
     }
+  }
+  .fab-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
   }
 }
