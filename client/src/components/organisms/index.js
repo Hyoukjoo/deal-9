@@ -6,6 +6,8 @@ import createProductListItemOrganism from "@organisms/product-list-item";
 import createBackdropPopupInputOrganism from "@organisms/backdrop-popup-input";
 import createTabBarOrganism from "@organisms/tab-bar";
 import createMenuTabPageOrganism from "@organisms/menu-tab-page";
+import createProductUploadImgListOrganism from "@organisms/product-upload-img-list";
+import createCategoryListOrganism from "@organisms/category-list";
 
 export {
   createHeaderOrganism,
@@ -16,4 +18,6 @@ export {
   createBackdropPopupInputOrganism,
   createTabBarOrganism,
   createMenuTabPageOrganism,
+  createProductUploadImgListOrganism,
+  createCategoryListOrganism,
 };
