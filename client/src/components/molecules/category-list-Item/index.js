@@ -1,12 +1,13 @@
 import "./style.scss";
-import { createTextAtom, createImgBoxAtom } from "@atoms";
+import { createTextAtom } from "@atoms";
+import { createProductImgMolecule } from "@molecules";
 
-const createCategoryListItemMolecule = ({ text }) => {
+const createCategoryListItemMolecule = ({ text, src }) => {
   const $categoryListItem = document.createElement("div");
-  const $imgBox = createImgBoxAtom({ type: "small" });
+  const $productImg = createProductImgMolecule({ type: "small", src });
   const $text = createTextAtom({ type: "span", size: "x-small", text });
 
-  $categoryListItem.append($imgBox, $text);
+  $categoryListItem.append($productImg, $text);
   $categoryListItem.classList.add("category-list-item");
 
   return $categoryListItem;

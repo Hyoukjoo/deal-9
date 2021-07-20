@@ -1,4 +1,4 @@
-import { Home, Product } from "@pages";
+import { Home, Product, Category } from "@pages";
 import { render } from "./render.js";
 
 const routes = {};
@@ -33,6 +33,7 @@ export const initRouter = ($app) => {
 
   registerRoutes("/", Home.getPage());
   registerRoutes("/product", Product.getPage());
+  registerRoutes("/category", Category.getPage());
 
   window.onpopstate = (e) => {
     const component = routes[window.location.pathname];

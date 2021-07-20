@@ -1,0 +1,12 @@
+.category-template {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 24px 36px 36px 32px;
+    li {
+      margin-bottom: 24px;
+      flex: 0 0 33.3%;
+      text-align: center;
+    }
+  }
+}
