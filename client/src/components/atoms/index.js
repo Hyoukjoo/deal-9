@@ -8,6 +8,7 @@ import createImgBoxAtom from "@atoms/img-box";
 import createInputAtom from "@atoms/input";
 import createShadowBoxAtom from "@atoms/div/shadow-box";
 import createDividerAtom from "@atoms/divider";
+import createBackdropAtom from "@atoms/backdrop";
 
 export {
   createTextAtom,
@@ -20,4 +21,5 @@ export {
   createInputAtom,
   createShadowBoxAtom,
   createDividerAtom,
+  createBackdropAtom,
 };
