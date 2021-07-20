@@ -4,14 +4,19 @@ import { createIconAtom, createButtonAtom } from "@atoms";
 const createIconButtonMolecule = ({
   type,
   color,
-  onClick,
+  fill,
   width,
   height,
-  fill,
+  onClick,
 }) => {
   const $iconButton = createButtonAtom({ onClick });
-  const $icon = createIconAtom({ type, color, width, height, fill });
-
+  const $icon = createIconAtom({
+    type,
+    color,
+    width,
+    height,
+    fill,
+  });
   $iconButton.appendChild($icon);
   $iconButton.classList.add("icon-button");
 
