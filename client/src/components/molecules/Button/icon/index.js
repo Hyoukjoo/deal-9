@@ -1,9 +1,16 @@
 import "./style.scss";
-import { createIconAtom } from "@atoms";
+import { createIconAtom, createButtonAtom } from "@atoms";
 
-const createIconButtonMolecule = ({ type, color }) => {
-  const $iconButton = document.createElement("button");
-  const $icon = createIconAtom({ type, color });
+const createIconButtonMolecule = ({
+  type,
+  color,
+  onClick,
+  width,
+  height,
+  fill,
+}) => {
+  const $iconButton = createButtonAtom({ onClick });
+  const $icon = createIconAtom({ type, color, width, height, fill });
 
   $iconButton.appendChild($icon);
   $iconButton.classList.add("icon-button");
