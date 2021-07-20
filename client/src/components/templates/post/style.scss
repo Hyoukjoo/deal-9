@@ -1,0 +1,18 @@
+.post-template {
+  main {
+    padding: 0 16px;
+  }
+  .post-input-wrapper {
+    border-bottom: 1px solid var(--color-gray3);
+    padding: 24px 0;
+    &:last-child {
+      padding-bottom: 43px;
+      border-bottom: none;
+    }
+  }
+  footer {
+    div {
+      padding: 22px;
+    }
+  }
+}
