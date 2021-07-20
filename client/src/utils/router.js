@@ -1,15 +1,22 @@
-import { Home, Product, Category } from "@pages";
 import { render } from "./render.js";
 
+// TODO: String.startsWith 를 사용해서 params 가지고 오기
 const routes = {};
 
 let $root;
 let isInitRouter = false;
 
+const registerRoute = (route) => {
+  routes[route.path] = route.getPage;
+};
+
 const push = (pathname, data = {}) => {
-  const component = routes[pathname];
   window.history.pushState(data, pathname, window.location.origin + pathname);
-  render($root, component);
+  render({
+    target: $root,
+    getPage: routes[pathname],
+    props: { router, pathname: window.location.pathname, data },
+  });
 };
 
 const back = () => {
@@ -21,26 +28,29 @@ const router = {
   back,
 };
 
-const registerRoutes = (pathname, page) => {
-  routes[pathname] = page;
-};
-
-export const initRouter = ($app) => {
+export const initRouter = ($app, routesInfos) => {
   if (isInitRouter) return;
 
   $root = $app;
   isInitRouter = true;
 
-  registerRoutes("/", Home.getPage());
-  registerRoutes("/product", Product.getPage());
-  registerRoutes("/category", Category.getPage());
+  routesInfos.forEach(registerRoute);
 
   window.onpopstate = (e) => {
-    const component = routes[window.location.pathname];
-    render($root, component);
+    const { pathname } = window.location;
+
+    render({
+      target: $root,
+      getPage: routes[pathname],
+      props: { router, pathname },
+    });
   };
 
-  render($root, routes[window.location.pathname]);
+  render({
+    target: $root,
+    getPage: routes[window.location.pathname],
+    props: { router, pathname: window.location.pathname },
+  });
 };
 
 export const getRouter = () => {

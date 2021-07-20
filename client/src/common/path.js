@@ -1,0 +1,10 @@
+export const HOME = "/";
+export const PRODUCT = "/product";
+export const CATEGORY = "/category";
+export const USER = "/user";
+export const LOCATION = "/location";
+export const LOGIN = "/login";
+export const LOGOUT = "/logout";
+export const SIGNUP = "/signup";
+export const DETAIL = "/detail";
+export const MENU = "/menu";

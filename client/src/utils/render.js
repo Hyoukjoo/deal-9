@@ -1,21 +1,32 @@
 import create404Page from "@pages/404";
 
-const clearChild = (parent) => {
+export const clearChild = (parent) => {
   while (parent.lastChild) {
     parent.lastChild.remove();
   }
 };
 
-export const render = (target, ...components) => {
-  clearChild(target);
+export const render = ({ target, getPage, props }) => {
+  try {
+    clearChild(target);
 
-  components = components.filter(Boolean);
+    if (typeof getPage === "function") {
+      props = { ...props, $app: target };
+      const component = getPage(props);
 
-  if (components.length > 0) {
-    target.append(...components);
-  } else {
-    const $404Page = create404Page();
+      if (component instanceof Promise) {
+        component.then((page) => {
+          target.append(page);
+        });
+      } else {
+        target.append(component);
+      }
+    } else {
+      const $404Page = create404Page();
 
-    target.append($404Page);
+      target.append($404Page);
+    }
+  } catch (e) {
+    throw e;
   }
 };
