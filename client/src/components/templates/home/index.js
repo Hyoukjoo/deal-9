@@ -3,8 +3,11 @@ import {
   createMainHeaderOrganism,
   createProductListItemOrganism,
 } from "@organisms";
+import { createFabButtonMolecule } from "@molecules";
+import { getRouter } from "@utils/router.js";
 
 const createHomeTemplate = ({ location, productList }) => {
+  const router = getRouter();
   const $homeTemplate = document.createElement("div");
   const $header = createMainHeaderOrganism({ location });
   const $productList = document.createElement("ul");
@@ -16,8 +19,13 @@ const createHomeTemplate = ({ location, productList }) => {
 
     $productList.append($productListItem);
   });
+  const $addButton = createFabButtonMolecule({
+    onClick: () => {
+      router.push("/post");
+    },
+  });
 
-  $homeTemplate.append($header, $productList);
+  $homeTemplate.append($header, $productList, $addButton);
   $homeTemplate.classList.add("home-template");
 
   return $homeTemplate;
