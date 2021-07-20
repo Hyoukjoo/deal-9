@@ -1,0 +1,21 @@
+.empty-tab-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    color: var(--color-gray3);
+    margin-bottom: 150px;
+  }
+}
+
+.tab-page {
+  overflow-y: auto;
+  height: calc(100% - 106px);
+  li {
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-gray3);
+    }
+  }
+}
