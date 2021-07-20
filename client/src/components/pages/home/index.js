@@ -1,26 +1,24 @@
-import { createTextAtom, createIconAtom } from "@atoms";
-import { getRouter } from "@utils/router.js";
+import { createHomeTemplate } from "@templates";
 
 const state = {};
 
+const dummy = {
+  title: "sample_1",
+  src: "https://assets.ajio.com/medias/sys_master/root/20210403/xX5W/6068a008aeb269a9e335b3ef/-473Wx593H-461778987-white-MODEL.jpg",
+  price: 300000,
+  desc: "this is realy good",
+  status: "selling",
+  timestamp: "1시간 전",
+  chatCount: 3,
+  bookmarkCount: 2,
+  isSaler: false,
+};
+
 const getPage = () => {
-  const router = getRouter();
-
-  const $section = document.createElement("section");
-  const $title = createTextAtom({ type: "h1", size: "large", text: "home" });
-  const $button = document.createElement("button");
-
-  const $icon = createIconAtom({ type: "add" });
-
-  $button.addEventListener("click", (e) => {
-    router.push("/product");
+  return createHomeTemplate({
+    location: "화양동",
+    productList: new Array(11).fill(0).map((v) => dummy),
   });
-
-  $button.textContent = "product로 이동!";
-
-  $section.append($title, $button, $icon);
-
-  return $section;
 };
 
 const Home = {
