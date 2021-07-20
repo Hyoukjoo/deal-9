@@ -1,0 +1,30 @@
+.product-list-item {
+  display: flex;
+  height: 140px;
+  width: 100%;
+  padding: 16px;
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 16px;
+    header {
+      display: flex;
+      justify-content: space-between;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+    }
+    footer {
+      margin-top: auto;
+      div {
+        float: right;
+        &:nth-child(2) {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+}

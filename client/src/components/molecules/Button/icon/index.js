@@ -17,7 +17,6 @@ const createIconButtonMolecule = ({
     height,
     fill,
   });
-
   $iconButton.appendChild($icon);
   $iconButton.classList.add("icon-button");
 

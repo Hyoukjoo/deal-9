@@ -10,6 +10,7 @@
 
   &-left {
     flex: 4;
+    display: block;
     text-align: left;
   }
 
@@ -20,6 +21,7 @@
     flex: 4;
     span {
       margin-left: 4px;
+      color: var(--color-white);
     }
   }
 
