@@ -1,6 +1,9 @@
 import { createCategoryTemplate } from "@templates";
+import { CATEGORY } from "@common/path.js";
 
 const state = {};
+
+const path = CATEGORY;
 
 const dummy = {
   name: "전자제품",
@@ -14,6 +17,7 @@ const getPage = () => {
 };
 
 const Category = {
+  path,
   getPage,
 };
 

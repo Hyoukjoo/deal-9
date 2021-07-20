@@ -1,0 +1,23 @@
+section.location-template {
+  & > div.location-template-body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    align-items: center;
+
+    & > div.location-button-wrapper {
+      display: flex;
+      margin-top: 28px;
+
+      & > button:first-of-type:not(:last-of-type) {
+        margin-right: 16px;
+      }
+    }
+
+    & > p {
+      margin: 0;
+      line-height: 18px;
+      color: var(--color-gray4);
+    }
+  }
+}

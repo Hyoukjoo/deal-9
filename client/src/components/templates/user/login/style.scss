@@ -1,0 +1,20 @@
+section#login-template {
+  & > div.body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    align-items: center;
+
+    & > input {
+      margin-bottom: 24px;
+    }
+
+    & > button {
+      margin-bottom: 24px;
+
+      & > label {
+        color: var(--color-white);
+      }
+    }
+  }
+}

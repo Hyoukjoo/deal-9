@@ -1,6 +1,9 @@
 import { createHomeTemplate } from "@templates";
+import { HOME } from "@common/path.js";
 
 const state = {};
+
+const path = HOME;
 
 const dummy = {
   title: "sample_1",
@@ -22,6 +25,7 @@ const getPage = () => {
 };
 
 const Home = {
+  path,
   getPage,
 };
 

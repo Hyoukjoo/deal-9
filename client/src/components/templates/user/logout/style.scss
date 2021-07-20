@@ -1,0 +1,16 @@
+section#logout-template {
+  & > div.body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    align-items: center;
+
+    & > p {
+      margin-bottom: 34px;
+    }
+
+    & > button > label {
+      color: var(--color-white);
+    }
+  }
+}

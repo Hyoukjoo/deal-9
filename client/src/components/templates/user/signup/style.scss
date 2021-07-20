@@ -1,0 +1,24 @@
+section#signup-template {
+  & > div.body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    align-items: center;
+
+    & > label {
+      align-self: flex-start;
+      margin-bottom: 8px;
+    }
+
+    & > input {
+      margin-bottom: 16px;
+    }
+
+    & > button {
+      margin-top: 6px;
+      & > label {
+        color: var(--color-white);
+      }
+    }
+  }
+}
