@@ -28,6 +28,7 @@ const createPopupInputMolecule = ({
     onClick: onClickPerformButton,
   });
 
+  $performButton.disabled = true;
   $shadowBox.classList.add("popup-input");
   $shadowBox.append($message, $input, $cancelButton, $performButton);
 
