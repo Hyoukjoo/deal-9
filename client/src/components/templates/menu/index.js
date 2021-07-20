@@ -4,7 +4,7 @@ import { createIconButtonMolecule } from "@molecules";
 import { createTextAtom } from "@atoms";
 import { getRouter } from "@utils/router";
 
-const createMenuTemplate = () => {
+const createMenuTemplate = ({ selectedTab, setState }) => {
   const router = getRouter();
   const $menuTemplate = document.createElement("div");
 
@@ -23,9 +23,14 @@ const createMenuTemplate = () => {
     middle: $pageName,
   });
 
-  const $tabs = createTabBarOrganism({ selectedTabIdx: 2 });
+  const $tabs = createTabBarOrganism({ selectedTab, setState });
+  const $page = createTextAtom({
+    type: "span",
+    size: "medium",
+    text: selectedTab + "",
+  });
 
-  $menuTemplate.append($header, $tabs);
+  $menuTemplate.append($header, $tabs, $page);
   return $menuTemplate;
 };
 
