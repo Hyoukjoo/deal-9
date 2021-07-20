@@ -8,6 +8,7 @@ const salesDummy = {
   desc: "this is realy good",
   status: "selling",
   timestamp: "1시간 전",
+  location: "화양동",
   chatCount: 3,
   bookmarkCount: 2,
   isSaler: false,
@@ -29,6 +30,7 @@ const bookmarkDummy = {
   desc: "this is realy good",
   status: "selling",
   timestamp: "1시간 전",
+  location: "화양동",
   chatCount: 3,
   bookmarkCount: 2,
   isSaler: false,
@@ -43,10 +45,11 @@ const initialState = {
   })),
   bookmarkList: new Array(8).fill(bookmarkDummy),
 };
-const { state, setState } = initState(initialState, createMenuTemplate);
+
+const { getState, setState } = initState(initialState, createMenuTemplate);
 
 const getPage = () => {
-  return createMenuTemplate({ ...state, setState });
+  return createMenuTemplate({ ...getState(), setState });
 };
 
 const Menu = {
