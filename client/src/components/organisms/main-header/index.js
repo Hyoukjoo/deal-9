@@ -28,10 +28,19 @@ const createMainHeaderOrganism = ({ location }) => {
   $middle.classList.add("main-header-middle");
 
   const $right = document.createElement("div");
-  $right.append(
-    createIconButtonMolecule({ type: "user", color: WHITE }),
-    createIconButtonMolecule({ type: "menu", color: WHITE })
-  );
+  const $userButton = createIconButtonMolecule({
+    onClick: () => {},
+    type: "user",
+    color: WHITE,
+  });
+  const $menuButton = createIconButtonMolecule({
+    onClick: () => {
+      router.push("/menu");
+    },
+    type: "menu",
+    color: WHITE,
+  });
+  $right.append($userButton, $menuButton);
   $right.classList.add("main-header-right");
 
   $header.append($left, $middle, $right);

@@ -9,14 +9,12 @@ const createHomeTemplate = ({ location, productList }) => {
   const $header = createMainHeaderOrganism({ location });
   const $productList = document.createElement("ul");
   productList.forEach((product) => {
-    const $li = document.createElement("li");
     const $productListItem = createProductListItemOrganism({
       ...product,
       location,
     });
 
-    $productList.append($li);
-    $li.append($productListItem);
+    $productList.append($productListItem);
   });
 
   $homeTemplate.append($header, $productList);

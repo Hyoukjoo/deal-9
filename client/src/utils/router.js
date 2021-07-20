@@ -1,4 +1,4 @@
-import { Home, Product, Category } from "@pages";
+import { Home, Product, Category, Menu } from "@pages";
 import { render } from "./render.js";
 
 const routes = {};
@@ -9,7 +9,7 @@ let isInitRouter = false;
 const push = (pathname, data = {}) => {
   const component = routes[pathname];
   window.history.pushState(data, pathname, window.location.origin + pathname);
-  render($root, component);
+  render($root, component.getPage());
 };
 
 const back = () => {
@@ -31,16 +31,17 @@ export const initRouter = ($app) => {
   $root = $app;
   isInitRouter = true;
 
-  registerRoutes("/", Home.getPage());
-  registerRoutes("/product", Product.getPage());
-  registerRoutes("/category", Category.getPage());
+  registerRoutes("/", Home);
+  registerRoutes("/product", Product);
+  registerRoutes("/category", Category);
+  registerRoutes("/menu", Menu);
 
   window.onpopstate = (e) => {
     const component = routes[window.location.pathname];
-    render($root, component);
+    render($root, component.getPage());
   };
 
-  render($root, routes[window.location.pathname]);
+  render($root, routes[window.location.pathname].getPage());
 };
 
 export const getRouter = () => {
