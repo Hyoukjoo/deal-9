@@ -4,6 +4,8 @@ import createChatItemOrganism from "@organisms/chat-item";
 import createChatBarOrganism from "@organisms/chat-bar";
 import createProductListItemOrganism from "@organisms/product-list-item";
 import createBackdropPopupInputOrganism from "@organisms/backdrop-popup-input";
+import createTabBarOrganism from "@organisms/tab-bar";
+import createMenuTabPageOrganism from "@organisms/menu-tab-page";
 
 export {
   createHeaderOrganism,
@@ -12,4 +14,6 @@ export {
   createChatBarOrganism,
   createProductListItemOrganism,
   createBackdropPopupInputOrganism,
+  createTabBarOrganism,
+  createMenuTabPageOrganism,
 };

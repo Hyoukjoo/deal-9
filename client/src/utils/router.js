@@ -1,3 +1,4 @@
+import { Home, Product, Category, Menu } from "@pages";
 import { render } from "./render.js";
 
 // TODO: String.startsWith 를 사용해서 params 가지고 오기

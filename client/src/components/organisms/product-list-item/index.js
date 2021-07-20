@@ -19,7 +19,7 @@ const createProductListItemOrganism = ({
   bookmarkCount,
   isSaler,
 }) => {
-  const $productListItem = document.createElement("div");
+  const $productListItem = document.createElement("li");
 
   const $productImg = createProductImgMolecule({ src, type: "large" });
 

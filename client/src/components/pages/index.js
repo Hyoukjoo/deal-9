@@ -5,6 +5,7 @@ import UserLocation from "@pages/user/location";
 import UserLogin from "@pages/user/login";
 import UserSignup from "@pages/user/logout";
 import UserLogout from "@pages/user/signup";
+import Menu from "@pages/menu";
 
 export {
   Home,
@@ -14,4 +15,5 @@ export {
   UserLogin,
   UserSignup,
   UserLogout,
+  Menu,
 };

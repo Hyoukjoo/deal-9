@@ -1,0 +1,10 @@
+.tab-bar {
+  height: 50px;
+  background-color: var(--color-off-white);
+  display: flex;
+  border-bottom: 1px solid var(--color-gray3);
+  div {
+    flex: 1;
+    text-align: center;
+  }
+}
