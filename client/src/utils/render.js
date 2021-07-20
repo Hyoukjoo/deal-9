@@ -30,3 +30,17 @@ export const render = ({ target, getPage, props }) => {
     throw e;
   }
 };
+
+export const _render = (target, ...components) => {
+  clearChild(target);
+
+  components = components.filter(Boolean);
+
+  if (components.length > 0) {
+    target.append(...components);
+  } else {
+    const $404Page = create404Page();
+
+    target.append($404Page);
+  }
+};
