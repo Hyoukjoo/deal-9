@@ -6,6 +6,7 @@ import {
   Category,
   UserLogout,
   UserSignup,
+  Menu,
 } from "@pages";
 
 export const routes = [
@@ -16,6 +17,7 @@ export const routes = [
   UserLogin,
   UserLogout,
   UserSignup,
+  Menu,
 ];
 
 // 일단 다음에 테스트 ...

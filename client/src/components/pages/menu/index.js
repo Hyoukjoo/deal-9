@@ -1,5 +1,6 @@
 import createMenuTemplate from "@templates/menu";
 import initState from "@utils/state";
+import { MENU } from "@common/path.js";
 
 const salesDummy = {
   title: "sample_1",
@@ -53,6 +54,7 @@ const getPage = () => {
 };
 
 const Menu = {
+  path: MENU,
   getPage,
 };
 
