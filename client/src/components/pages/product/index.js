@@ -1,7 +1,10 @@
-import { createTextAtom } from "@atoms/index.js";
+import { createTextAtom } from "@atoms";
 import { getRouter } from "@utils/router.js";
+import { PRODUCT } from "@common/path.js";
 
 const state = {};
+
+const path = PRODUCT;
 
 const getPage = () => {
   const router = getRouter();
@@ -22,6 +25,7 @@ const getPage = () => {
 };
 
 const Product = {
+  path,
   getPage,
 };
 
