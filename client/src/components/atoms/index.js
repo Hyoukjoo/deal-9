@@ -9,6 +9,7 @@ import createInputAtom from "@atoms/input";
 import createShadowBoxAtom from "@atoms/div/shadow-box";
 import createDividerAtom from "@atoms/divider";
 import createBackdropAtom from "@atoms/backdrop";
+import createTextareaAtom from "@atoms/textarea";
 
 export {
   createTextAtom,
@@ -22,4 +23,5 @@ export {
   createShadowBoxAtom,
   createDividerAtom,
   createBackdropAtom,
+  createTextareaAtom,
 };
