@@ -12,6 +12,7 @@ const createProductUploadImgListOrganism = ({
   const $imgList = document.createElement("ul");
   const $addImgButton = createAddImgButtonMolecule({
     onChange: onChangeFileInput,
+    imgCount: uploadImgList.length,
   });
 
   $imgList.append($addImgButton);
