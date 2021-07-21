@@ -2,7 +2,10 @@ import "./style.scss";
 import { createTextAtom } from "@atoms";
 import { createCategoryButtonMolecule } from "@molecules";
 
-const createCategoryListOrganism = ({ categoryList }) => {
+const createCategoryListOrganism = ({
+  categoryList,
+  onClickCategoryButton,
+}) => {
   const $createCategoryList = document.createElement("div");
   const $text = createTextAtom({
     type: "span",
@@ -13,8 +16,9 @@ const createCategoryListOrganism = ({ categoryList }) => {
   categoryList.forEach((category) => {
     const $li = document.createElement("li");
     const $category = createCategoryButtonMolecule({
-      onClick: () => {},
+      onClick: onClickCategoryButton,
       label: category.name,
+      categoryId: category.id,
     });
     $ul.append($li);
     $li.append($category);

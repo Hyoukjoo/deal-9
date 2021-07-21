@@ -4,10 +4,13 @@ import {
   createProductImgMolecule,
 } from "@molecules";
 
-const createProductUploadImgMolecule = ({ src }) => {
+const createProductUploadImgMolecule = ({ src, idx, onClickCancelButton }) => {
   const $productUploadImg = document.createElement("div");
   const $img = createProductImgMolecule({ type: "medium", src });
-  const $cancelButton = createCancelButtonMolecule();
+  const $cancelButton = createCancelButtonMolecule({
+    onClick: onClickCancelButton,
+  });
+  $cancelButton.dataset.idx = idx;
 
   $productUploadImg.append($img, $cancelButton);
   $productUploadImg.classList.add("product-upload-img");

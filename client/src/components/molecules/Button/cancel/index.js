@@ -2,8 +2,8 @@ import "./style.scss";
 import { createIconAtom, createButtonAtom } from "@atoms";
 import { WHITE } from "@common/styles/color.js";
 
-const createCancelButtonMolecule = () => {
-  const $button = createButtonAtom({ onClick: () => {} });
+const createCancelButtonMolecule = ({ onClick }) => {
+  const $button = createButtonAtom({ onClick });
   const $icon = createIconAtom({
     type: "close",
     color: WHITE,

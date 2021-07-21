@@ -8,8 +8,9 @@ const createIconButtonMolecule = ({
   width,
   height,
   onClick,
+  disabled,
 }) => {
-  const $iconButton = createButtonAtom({ onClick });
+  const $iconButton = createButtonAtom({ onClick, disabled });
   const $icon = createIconAtom({
     type,
     color,
