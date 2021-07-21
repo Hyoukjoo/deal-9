@@ -44,3 +44,11 @@ export const _render = (target, ...components) => {
     target.append($404Page);
   }
 };
+
+export const replaceDomElement = ($newDomEl) => {
+  const classNames = [...$newDomEl.classList].map(
+    (className) => `.${className}`
+  );
+  const $oldEl = document.querySelector(...classNames);
+  $oldEl.replaceWith($newDomEl);
+};
