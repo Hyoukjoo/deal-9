@@ -10,11 +10,15 @@ router.post("/login", UserController.login);
 
 router.post("/logout", UserController.logout);
 
-router.post("/location", AuthMiddleware.verify, UserController.addLocation);
+router.post(
+  "/location",
+  // AuthMiddleware.verify,
+  UserController.addLocation
+);
 
 router.delete(
   "/location",
-  AuthMiddleware.verify,
+  // AuthMiddleware.verify,
   UserController.removeLocation
 );
 

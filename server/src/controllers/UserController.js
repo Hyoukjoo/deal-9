@@ -1,10 +1,13 @@
-import UserRepository from "../repositories/users.js";
+import { AUTH_TOKEN, SEVEN_DAYS_MILLISECONDS } from "../common/constant.js";
+import { locationRE } from "../common/regex.js";
+import UserRepository from "../repositories/UserRepository.js";
+import Token from "../utils/token.js";
 
 const signup = async (req, res) => {
   try {
-    const { username } = req.body;
+    const { username, location } = req.body;
 
-    const user = await UserRepository.create(username);
+    const user = await UserRepository.create(username, location);
 
     if (user) {
       return res.status(409).send({
@@ -14,7 +17,7 @@ const signup = async (req, res) => {
 
     const result = await UserRepository.findByName(username);
 
-    res.json(result);
+    res.json({ result });
   } catch (e) {
     console.error(e);
 
@@ -26,7 +29,9 @@ const login = async (req, res) => {
   try {
     const { username } = req.body;
 
-    const user = await UserRepository.findByName(username);
+    const result = await UserRepository.findByName(username);
+
+    const user = result[0][0];
 
     if (user === undefined) {
       res
@@ -35,7 +40,15 @@ const login = async (req, res) => {
       return;
     }
 
-    res.json({ message: "로그인 성공!" });
+    const token = Token.getToken({ username: user.name, userId: user.id });
+
+    res.cookie(AUTH_TOKEN, token, {
+      httpOnly: true,
+      maxAge: SEVEN_DAYS_MILLISECONDS,
+      signed: true,
+    });
+
+    res.json({ message: "로그인 성공!", data: { user } });
   } catch (e) {
     console.error(e);
 
@@ -43,9 +56,51 @@ const login = async (req, res) => {
   }
 };
 
-const logout = async (req, res) => {};
+const logout = async (req, res) => {
+  try {
+    res.clearCookie(AUTH_TOKEN);
 
-const addLocation = async (req, res) => {};
+    res.json({ message: "로그아웃 성공!" });
+  } catch (e) {
+    console.error(e);
+
+    res.status(500).json({ message: "서버 에러!" });
+  }
+};
+
+const addLocation = async (req, res) => {
+  try {
+    const { location } = req.body;
+    const { userId, username } = req.locals.user;
+
+    const isDong = locationRE.test(location);
+
+    if (!isDong) {
+      res.status(400).json({ message: "적합한 동 형태가 아닙니다." });
+      return;
+    }
+
+    const existLocation = await UserRepository.findLocationByName(location);
+
+    const isNotExistLocation = existLocation[0][0] === undefined;
+
+    if (isNotExistLocation) {
+      UserRepository.createLocation(location);
+    }
+
+    const locationsOfUser = await UserRepository.findLocationsOfUserByUserId(
+      userId
+    );
+
+    console.log(result);
+
+    res.json({ message: "동네 등록 성공!", data: {} });
+  } catch (e) {
+    console.error(e);
+
+    res.status(500).json({ message: "서버 에러!" });
+  }
+};
 
 const removeLocation = async (req, res) => {};
 

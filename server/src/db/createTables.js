@@ -5,6 +5,7 @@ const createTables = async () => {
     CREATE TABLE IF NOT EXISTS users (
       id INT AUTO_INCREMENT,
       name VARCHAR(255),
+      location VARCHAR(255),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       PRIMARY KEY (id)
     )    
@@ -13,8 +14,9 @@ const createTables = async () => {
   const createLocationsTable = `/* SQL */
     CREATE TABLE IF NOT EXISTS locations (
       id INT AUTO_INCREMENT,
-      name VARCHAR(255),
+      name VARCHAR(255) UNIQUE,
       PRIMARY KEY (id)
+
     )    
   `;
 

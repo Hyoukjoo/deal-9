@@ -1,19 +1,17 @@
-import { AUTH_TOKEN } from "../common/constant.js";
+import { AUTH_TOKEN, SEVEN_DAYS_MILLISECONDS } from "../common/constant.js";
 import Token from "../utils/token.js";
-
-const SEVEN_DAYS_MILLISECONDS = 1000 * 60 * 60 * 24 * 7;
 
 const verify = (req, res, next) => {
   try {
     const token = req.cookies[AUTH_TOKEN];
 
     if (token === undefined) {
-      res.status(401).send();
+      res.status(401).json({ message: "쿠키가 유효하지 않습니다." });
       return;
     }
 
     const decoded = Token.verify(token);
-    const { username } = decoded;
+    const { username, userId } = decoded;
 
     if (decoded.isRemainedOneDay) {
       const newToken = Token.getToken();
@@ -24,7 +22,7 @@ const verify = (req, res, next) => {
       });
     }
 
-    res.locals.user = { username };
+    res.locals.user = { username, userId };
 
     next();
   } catch (e) {
