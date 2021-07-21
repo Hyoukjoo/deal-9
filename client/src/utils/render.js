@@ -45,10 +45,14 @@ export const _render = (target, ...components) => {
   }
 };
 
-export const replaceDomElement = ($newDomEl) => {
-  const classNames = [...$newDomEl.classList].map(
-    (className) => `.${className}`
-  );
-  const $oldEl = document.querySelector(...classNames);
-  $oldEl.replaceWith($newDomEl);
+export const replaceDomElement = ($newDomEl, $oldEl) => {
+  if ($oldEl) {
+    $oldEl.replaceWith($newDomEl);
+  } else {
+    const classNames = [...$newDomEl.classList].map(
+      (className) => `.${className}`
+    );
+    const $oldEl = document.querySelector(...classNames);
+    $oldEl.replaceWith($newDomEl);
+  }
 };

@@ -50,7 +50,13 @@ const initialState = {
 const { getState, setState } = initState(initialState, createMenuTemplate);
 
 const getPage = () => {
-  return createMenuTemplate({ ...getState(), setState });
+  return createMenuTemplate({
+    ...getState(),
+    setState,
+    onClickHeart: () => {},
+    onClickModify: () => {},
+    onClickDelete: () => {},
+  });
 };
 
 const Menu = {

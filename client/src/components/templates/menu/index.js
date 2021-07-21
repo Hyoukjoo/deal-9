@@ -14,6 +14,9 @@ const createMenuTemplate = ({
   salesList,
   chatList,
   bookmarkList,
+  onClickHeart,
+  onClickModify,
+  onClickDelete,
 }) => {
   const router = getRouter();
   const $menuTemplate = document.createElement("div");
@@ -40,6 +43,9 @@ const createMenuTemplate = ({
   const $tabPage = createMenuTabPageOrganism({
     tab: selectedTab,
     list: dataList[selectedTab],
+    onClickHeart,
+    onClickModify,
+    onClickDelete,
   });
 
   $menuTemplate.append($header, $tabs, $tabPage);

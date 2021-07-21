@@ -2,17 +2,18 @@ import "./style.scss";
 import { createIconAtom, createLinkAtom, createButtonAtom } from "@atoms";
 import { createIconButtonMolecule } from "@molecules";
 import { WHITE } from "@common/styles/color.js";
-import { getRouter } from "@utils/router.js";
 
-const createMainHeaderOrganism = ({ location }) => {
-  const router = getRouter();
+const createMainHeaderOrganism = ({
+  location,
+  onClickCategory,
+  onClickMenu,
+  onClickUser,
+}) => {
   const $header = document.createElement("header");
 
   const $left = document.createElement("div");
   const $categoryButton = createIconButtonMolecule({
-    onClick: () => {
-      router.push("/category");
-    },
+    onClick: onClickCategory,
     type: "category",
     color: WHITE,
   });
@@ -29,14 +30,12 @@ const createMainHeaderOrganism = ({ location }) => {
 
   const $right = document.createElement("div");
   const $userButton = createIconButtonMolecule({
-    onClick: () => {},
+    onClick: onClickUser,
     type: "user",
     color: WHITE,
   });
   const $menuButton = createIconButtonMolecule({
-    onClick: () => {
-      router.push("/menu");
-    },
+    onClick: onClickMenu,
     type: "menu",
     color: WHITE,
   });

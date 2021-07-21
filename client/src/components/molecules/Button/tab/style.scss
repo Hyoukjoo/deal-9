@@ -1,10 +1,12 @@
 button.tab-button {
   width: 85%;
   height: 100%;
-
   & > label {
     line-height: 16px;
     color: var(--color-gray1);
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &.active {
