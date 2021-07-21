@@ -44,3 +44,15 @@ export const _render = (target, ...components) => {
     target.append($404Page);
   }
 };
+
+export const replaceDomElement = ($newDomEl, $oldEl) => {
+  if ($oldEl) {
+    $oldEl.replaceWith($newDomEl);
+  } else {
+    const classNames = [...$newDomEl.classList].map(
+      (className) => `.${className}`
+    );
+    const $oldEl = document.querySelector(...classNames);
+    $oldEl.replaceWith($newDomEl);
+  }
+};

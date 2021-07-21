@@ -1,11 +1,10 @@
 import "./style.scss";
 import {
   createProductImgMolecule,
-  createIconButtonMolecule,
   createTextWithMiddotMolecule,
   createIconWithTextMolecule,
 } from "@molecules";
-import { createLinkAtom, createTextAtom } from "@atoms";
+import { createLinkAtom } from "@atoms";
 import { priceFormat } from "@utils/helper.js";
 
 const createProductListItemOrganism = ({
@@ -14,10 +13,9 @@ const createProductListItemOrganism = ({
   price,
   location,
   timestamp,
-  isBookmarked,
   chatCount,
   bookmarkCount,
-  isSaler,
+  productHeaderButton,
 }) => {
   const $productListItem = document.createElement("li");
 
@@ -27,15 +25,7 @@ const createProductListItemOrganism = ({
 
   const $productInfoHeader = document.createElement("header");
   const $title = createLinkAtom({ type: "span", size: "medium", text: title });
-  // TODO: heart molecule(organism?) api, click event 붙여서 따로 만들기
-  const $heart = createIconButtonMolecule({
-    type: "heart",
-    with: "20px",
-    height: "20px",
-  });
-  //TODO: 드랍다운
-  const $menu = createIconButtonMolecule({ type: "menu" });
-  const $productInfoHeaderButton = isSaler ? $menu : $heart;
+  const $productInfoHeaderButton = productHeaderButton;
   $productInfoHeader.append($title, $productInfoHeaderButton);
 
   const $productInfoMain = document.createElement("main");
@@ -60,8 +50,12 @@ const createProductListItemOrganism = ({
     iconType: "heart",
     text: bookmarkCount,
   });
-  bookmarkCount && $productInfoFooter.append($bookmarkCount);
-  chatCount && $productInfoFooter.append($chatCount);
+  if (bookmarkCount) {
+    $productInfoFooter.append($bookmarkCount);
+  }
+  if (chatCount) {
+    $productInfoFooter.append($chatCount);
+  }
 
   $productInfo.append($productInfoHeader, $productInfoMain, $productInfoFooter);
   $productListItem.append($productImg, $productInfo);
