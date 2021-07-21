@@ -1,4 +1,8 @@
 .category-list {
+  display: none;
+  &.show {
+    display: block;
+  }
   span {
     color: var(--color-gray4);
   }

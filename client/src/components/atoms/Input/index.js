@@ -17,7 +17,10 @@ const createInputAtom = ({
   const $input = document.createElement("input");
 
   $input.setAttribute("type", type);
-  $input.classList.add("atom", `atom-input-size-${size}`, custom);
+  $input.classList.add("atom", `atom-input-size-${size}`);
+  if (custom) {
+    $input.classList.add(custom);
+  }
   $input.placeholder = placeholder;
   $input.addEventListener("input", onChange);
 
