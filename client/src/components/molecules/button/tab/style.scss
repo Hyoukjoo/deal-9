@@ -1,0 +1,19 @@
+button.tab-button {
+  width: 85%;
+  height: 100%;
+  & > label {
+    line-height: 16px;
+    color: var(--color-gray1);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.active {
+    border-bottom: 2px solid var(--color-primary1);
+    & > label {
+      line-height: 16px;
+      color: var(--color-primary1);
+    }
+  }
+}
