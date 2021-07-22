@@ -11,15 +11,15 @@ const { PORT, CLIENT_URL, COOKIE_SECRET } = env;
 
 const isDev = process.env.NODE_ENV === "development";
 
-// createTables();
+createTables();
 
 const app = express();
 
 app.use(logger(isDev ? "dev" : "combine"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: CLIENT_URL, credentials: true }));
 app.use(cookieParser(COOKIE_SECRET));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
 
