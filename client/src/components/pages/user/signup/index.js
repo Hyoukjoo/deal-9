@@ -1,6 +1,6 @@
 import { createSignupTemplate } from "@templates";
 import { signupRequest } from "../../../../remotes/UserRemote.js";
-import { SIGNUP, LOGIN } from "@common/path.js";
+import { SIGNUP, LOGIN, HOME } from "@common/path.js";
 
 const path = SIGNUP;
 let username = "";
@@ -10,7 +10,7 @@ const usernameRE = /^[a-zA-Z0-9]{1,20}$/;
 
 export const getPage = ({ router }) => {
   const onClickBackButton = () => {
-    router.back();
+    router.push(HOME);
   };
 
   const onChangeIDInput = (e) => {

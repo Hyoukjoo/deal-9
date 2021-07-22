@@ -1,5 +1,5 @@
 import { createLogoutTemplate } from "@templates";
-import { LOGOUT, LOGIN } from "@common/path.js";
+import { LOGOUT, LOGIN, HOME } from "@common/path.js";
 import {
   getMyInfoRequest,
   logoutRequest,
@@ -9,7 +9,7 @@ const path = LOGOUT;
 
 export const getPage = ({ router }) => {
   const onClickBackButton = () => {
-    router.back();
+    router.push(HOME);
   };
 
   const onClickLogoutButton = () => {
