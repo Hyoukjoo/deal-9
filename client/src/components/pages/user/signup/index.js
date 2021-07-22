@@ -8,7 +8,7 @@ let location = "";
 const locationRE = /([가-힇\d]+[동]$)/;
 const usernameRE = /^[a-zA-Z0-9]{1,20}$/;
 
-export const getPage = ({ router, $app }) => {
+export const getPage = ({ router }) => {
   const onClickBackButton = () => {
     router.back();
   };
@@ -21,7 +21,6 @@ export const getPage = ({ router, $app }) => {
     location = e.target.value;
   };
 
-  // TODO: 수정필요...
   const onClickSignupButton = () => {
     const isValidLocation = locationRE.test(location);
     const isValidUsername =
@@ -30,9 +29,14 @@ export const getPage = ({ router, $app }) => {
       username.search(/[0-9]/g) >= 0;
 
     if (isValidLocation && isValidUsername) {
-      signupRequest(username, location);
-      // router.push(USER + LOGOUT);
-      return;
+      signupRequest(username, location).then(({ success }) => {
+        if (success) {
+          router.push(LOGOUT);
+        }
+      });
+    } else {
+      // TODO: alert component 활용
+      alert("유효하지 않은 아이디 혹은 동네 이름입니다.");
     }
   };
 

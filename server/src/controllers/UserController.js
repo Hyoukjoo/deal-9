@@ -1,5 +1,5 @@
 import { AUTH_TOKEN, SEVEN_DAYS_MILLISECONDS } from "../common/constant.js";
-import { locationRE } from "../common/regex.js";
+import { locationRE, usernameRE } from "../common/regex.js";
 import UserRepository from "../repositories/UserRepository.js";
 import Token from "../utils/token.js";
 
@@ -7,17 +7,25 @@ const signup = async (req, res) => {
   try {
     const { username, location } = req.body;
 
-    const user = await UserRepository.create(username, location);
-
-    if (user) {
-      return res.status(409).send({
-        message: "이름 중복",
+    if (!usernameRE.test(username) || !locationRE.test(location)) {
+      return res.status(400).json({
+        success: false,
+        message: "유효하지 않는 아이디 또는 동네입니다.",
       });
     }
 
     const result = await UserRepository.findByName(username);
+    const isExistedUser = result[0][0] !== undefined;
 
-    res.json({ result });
+    if (isExistedUser) {
+      return res.status(409).json({
+        message: "이름 중복",
+      });
+    }
+
+    UserRepository.create(username, location).then(() => {
+      res.json({ success: true });
+    });
   } catch (e) {
     console.error(e);
 
@@ -36,7 +44,7 @@ const login = async (req, res) => {
     if (user === undefined) {
       res
         .status(400)
-        .send({ message: `${username} 유저가 존재하지 않습니다.` });
+        .json({ message: `${username} 유저가 존재하지 않습니다.` });
       return;
     }
 
