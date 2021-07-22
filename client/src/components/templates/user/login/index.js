@@ -6,7 +6,7 @@ import {
   createNormalButtonMolecule,
 } from "@molecules";
 import { createHeaderOrganism } from "@organisms";
-import { USER, SIGNUP } from "@common/path.js";
+import { SIGNUP } from "@common/path.js";
 
 const createLoginTemplate = ({
   onClickBackButton,
@@ -42,7 +42,7 @@ const createLoginTemplate = ({
   });
   const $singupAnchor = createAnchorAtom({
     size: "small",
-    href: USER + SIGNUP,
+    href: SIGNUP,
     label: "회원가입",
   });
 
