@@ -1,0 +1,14 @@
+.menu-dropdown {
+  > button {
+    padding: 0;
+  }
+  .dropdown-list {
+    button {
+      &:nth-child(2) {
+        span {
+          color: red;
+        }
+      }
+    }
+  }
+}
