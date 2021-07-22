@@ -8,48 +8,64 @@ export default class BaseApiService {
     this.url = url.href;
   }
 
-  get(path, config) {
+  #baseFetch({ path, data, contentType, ...config }) {
+    const headers = {
+      ...config?.["headers"],
+    };
+
+    switch (contentType) {
+      case "json":
+        headers["Content-Type"] = "application/json";
+        config.body = JSON.stringify(data);
+        break;
+      case "formData":
+        headers["Content-Type"] = "multipart/form-data";
+        config.body = data;
+        break;
+      default:
+        break;
+    }
+
     return fetch(`${this.url}/${path}`, {
+      mode: "cors",
+      credentials: "include",
+      headers,
+      ...config,
+    });
+  }
+
+  get(path, config = {}) {
+    return this.#baseFetch({
       method: "get",
-      mode: "cors",
-      credentials: "include",
+      path,
       ...config,
     });
   }
 
-  post(path, body, config) {
-    return fetch(`${this.url}/${path}`, {
+  post(path, data, { contentType = "json", ...config } = {}) {
+    return this.#baseFetch({
       method: "post",
-      body: JSON.stringify(body),
-      mode: "cors",
-      credentials: "include",
+      path,
+      data,
+      contentType,
       ...config,
-      headers: {
-        "Content-Type": "application/json",
-        ...config?.[headers],
-      },
     });
   }
 
-  put(path, body, config) {
-    return fetch(`${this.url}/${path}`, {
+  put(path, data, { contentType = "json", ...config } = {}) {
+    return this.#baseFetch({
       method: "put",
-      body: JSON.stringify(body),
-      mode: "cors",
-      credentials: "include",
+      path,
+      data,
+      contentType,
       ...config,
-      headers: {
-        "Content-Type": "application/json",
-        ...config?.[headers],
-      },
     });
   }
 
-  delete(path, config) {
-    return fetch(`${this.url}/${path}`, {
+  delete(path, config = {}) {
+    return this.#baseFetch({
       method: "delete",
-      mode: "cors",
-      credentials: "include",
+      path,
       ...config,
     });
   }
