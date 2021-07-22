@@ -1,6 +1,7 @@
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import dotenv from "dotenv";
 
 import {
   atomPath,
@@ -10,7 +11,6 @@ import {
   moleculePath,
   organismPath,
   pagePath,
-  publicPath,
   templatePath,
   utilPath,
 } from "./paths.js";
@@ -38,6 +38,9 @@ const clientConfig = {
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ["!server.js"],
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(dotenv.config().parsed),
     }),
   ],
   module: {
