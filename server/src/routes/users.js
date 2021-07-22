@@ -4,21 +4,19 @@ import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 
 const router = Router();
 
+router.get("/", AuthMiddleware.verify, UserController.getMyInfo);
+
 router.post("/signup", UserController.signup);
 
 router.post("/login", UserController.login);
 
 router.post("/logout", UserController.logout);
 
-router.post(
-  "/location",
-  // AuthMiddleware.verify,
-  UserController.addLocation
-);
+router.post("/location", AuthMiddleware.verify, UserController.addLocation);
 
 router.delete(
   "/location",
-  // AuthMiddleware.verify,
+  AuthMiddleware.verify,
   UserController.removeLocation
 );
 

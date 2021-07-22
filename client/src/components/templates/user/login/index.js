@@ -39,6 +39,7 @@ const createLoginTemplate = ({
     size: "large",
     label: "로그인",
     onClick: onClickLoginButton,
+    disabled: true,
   });
   const $singupAnchor = createAnchorAtom({
     size: "small",

@@ -1,18 +1,34 @@
 import { createLogoutTemplate } from "@templates";
-import { LOGOUT } from "@common/path.js";
+import { LOGOUT, LOGIN } from "@common/path.js";
+import {
+  getMyInfoRequest,
+  logoutRequest,
+} from "../../../../remotes/UserRemote.js";
 
 const path = LOGOUT;
-let id;
-let location;
 
 export const getPage = ({ router }) => {
   const onClickBackButton = () => {
     router.back();
   };
 
-  const $logoutTemplate = createLogoutTemplate({ onClickBackButton });
+  const onClickLogoutButton = () => {
+    logoutRequest().then((result) => {
+      if (result) {
+        router.push(LOGIN);
+      }
+    });
+  };
 
-  return $logoutTemplate;
+  return getMyInfoRequest().then(({ username }) => {
+    const $logoutTemplate = createLogoutTemplate({
+      onClickBackButton,
+      onClickLogoutButton,
+      username,
+    });
+
+    return $logoutTemplate;
+  });
 };
 
 const UserLogout = {

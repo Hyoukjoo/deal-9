@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:4000";
+import env from "../../config/env.js";
+
+const API_URL = env.API_URL || "http://localhost:4000";
 
 export default class BaseApiService {
   constructor(path) {
@@ -9,6 +11,8 @@ export default class BaseApiService {
   get(path, config) {
     return fetch(`${this.url}/${path}`, {
       method: "get",
+      mode: "cors",
+      credentials: "include",
       ...config,
     });
   }
@@ -17,6 +21,8 @@ export default class BaseApiService {
     return fetch(`${this.url}/${path}`, {
       method: "post",
       body: JSON.stringify(body),
+      mode: "cors",
+      credentials: "include",
       ...config,
       headers: {
         "Content-Type": "application/json",
@@ -29,6 +35,8 @@ export default class BaseApiService {
     return fetch(`${this.url}/${path}`, {
       method: "put",
       body: JSON.stringify(body),
+      mode: "cors",
+      credentials: "include",
       ...config,
       headers: {
         "Content-Type": "application/json",
@@ -40,34 +48,9 @@ export default class BaseApiService {
   delete(path, config) {
     return fetch(`${this.url}/${path}`, {
       method: "delete",
+      mode: "cors",
+      credentials: "include",
       ...config,
     });
   }
 }
-
-// export const base_request = ({ method, path, body, config }) => {
-//   return fetch({
-//     method,
-//     url: url.href,
-//     headers,
-//     credentials: "include",
-//     body,
-//     ...config,
-//   });
-// };
-
-// export const get_request = ({ path, ...config }) => {
-//   return base_request({ method: "get", path, ...config });
-// };
-
-// export const post_request = ({ path, body, ...config }) => {
-//   return base_request({ method: "post", path, body, ...config });
-// };
-
-// export const put_request = ({ path, body, ...config }) => {
-//   return base_request({ method: "put", path, body, ...config });
-// };
-
-// export const delete_request = ({ path, ...config }) => {
-//   return base_request({ method: "delete", path, ...config });
-// };
