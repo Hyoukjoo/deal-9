@@ -16,8 +16,8 @@ const getProducts = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const { userId, locationId, title, content, status, images, categories } =
-      req.body;
+    const images = req.files.mapa((file) => file.location);
+    const { userId, locationId, title, content, status, categories } = req.body;
     await ProductRepository.createProduct({
       userId,
       locationId,
