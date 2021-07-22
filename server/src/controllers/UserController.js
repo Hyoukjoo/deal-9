@@ -7,17 +7,23 @@ const signup = async (req, res) => {
   try {
     const { username, location } = req.body;
 
-    const user = await UserRepository.create(username, location);
+    const userResult = await UserRepository.findByName(username, location);
 
-    if (user) {
-      return res.status(409).send({
-        message: "이름 중복",
+    const existUser = userResult[0][0];
+
+    if (existUser) {
+      res.status(409).send({
+        message: "이미 존재하는 아이디가 있습니다.",
       });
+
+      return;
     }
 
-    const result = await UserRepository.findByName(username);
+    const [result] = await UserRepository.create(username);
 
-    res.json({ result });
+    console.log(result.ResultSetHeader.serverStatus === 2);
+
+    res.json({ success: true });
   } catch (e) {
     console.error(e);
 
