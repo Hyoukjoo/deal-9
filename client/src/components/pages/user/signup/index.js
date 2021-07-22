@@ -1,6 +1,6 @@
 import { createSignupTemplate } from "@templates";
 import { signupRequest } from "../../../../remotes/UserRemote.js";
-import { SIGNUP, LOGOUT } from "@common/path.js";
+import { SIGNUP, LOGIN } from "@common/path.js";
 
 const path = SIGNUP;
 let username = "";
@@ -31,7 +31,7 @@ export const getPage = ({ router }) => {
     if (isValidLocation && isValidUsername) {
       signupRequest(username, location).then(({ success }) => {
         if (success) {
-          router.push(LOGOUT);
+          router.push(LOGIN);
         }
       });
     } else {

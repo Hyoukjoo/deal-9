@@ -10,7 +10,7 @@ import { createHeaderOrganism } from "@organisms";
 const createLogoutTemplate = ({
   onClickBackButton,
   onClickLogoutButton,
-  username = "조혁쭈 & 김동진",
+  username = "",
 }) => {
   const $template = document.createElement("section");
   const $backButton = createIconButtonMolecule({
