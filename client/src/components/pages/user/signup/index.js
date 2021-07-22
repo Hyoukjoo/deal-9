@@ -1,8 +1,8 @@
 import { createAlertMolecule } from "@molecules";
 import { createSignupTemplate } from "@templates";
-import { USER, SIGNUP, LOGOUT } from "@common/path.js";
+import { SIGNUP, LOGOUT } from "@common/path.js";
 
-const path = USER + SIGNUP;
+const path = SIGNUP;
 let id = "";
 let location = "";
 const locationRE = /([가-힇\d]+[동]$)/;
@@ -30,7 +30,7 @@ export const getPage = ({ router, $app }) => {
 
     if (isValidLocation && isValidID) {
       console.log("request");
-      router.push(USER + LOGOUT);
+      router.push(LOGOUT);
       return;
     }
   };

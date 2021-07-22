@@ -1,7 +1,7 @@
 import { createLoginTemplate } from "@templates";
-import { LOGIN, USER } from "@common/path.js";
+import { LOGIN } from "@common/path.js";
 
-const path = USER + LOGIN;
+const path = LOGIN;
 let id;
 
 export const getPage = ({ router }) => {

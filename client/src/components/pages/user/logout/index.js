@@ -1,7 +1,7 @@
 import { createLogoutTemplate } from "@templates";
-import { USER, LOGOUT } from "@common/path.js";
+import { LOGOUT } from "@common/path.js";
 
-const path = USER + LOGOUT;
+const path = LOGOUT;
 let id;
 let location;
 
