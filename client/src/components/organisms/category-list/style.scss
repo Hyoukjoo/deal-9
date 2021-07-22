@@ -1,0 +1,23 @@
+.category-list {
+  display: none;
+  &.show {
+    display: block;
+  }
+  span {
+    color: var(--color-gray4);
+  }
+  ul {
+    margin-top: 8px;
+    display: flex;
+    overflow-x: auto;
+    li {
+      flex-shrink: 0;
+      &:not(:first-child) {
+        margin-left: 4px;
+      }
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

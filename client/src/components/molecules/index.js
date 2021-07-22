@@ -19,6 +19,9 @@ import createProductImgMolecule from "@molecules/product-img";
 import createInfoProductMoleCule from "@molecules/info-product";
 import createTextWithMiddotMolecule from "@molecules/text-with-middot";
 import createIconWithTextMolecule from "@molecules/icon-with-text";
+import createCancelButtonMolecule from "@molecules/button/cancel";
+import createProductUploadImgMolecule from "@molecules/product-upload-img";
+import createMenuButtonMolecule from "@molecules/button/menu";
 
 export {
   createAddImgButtonMolecule,
@@ -42,4 +45,7 @@ export {
   createInfoProductMoleCule,
   createTextWithMiddotMolecule,
   createIconWithTextMolecule,
+  createCancelButtonMolecule,
+  createProductUploadImgMolecule,
+  createMenuButtonMolecule,
 };

@@ -8,3 +8,4 @@ export const LOGOUT = "/logout";
 export const SIGNUP = "/signup";
 export const DETAIL = "/detail";
 export const MENU = "/menu";
+export const POST = "/post";

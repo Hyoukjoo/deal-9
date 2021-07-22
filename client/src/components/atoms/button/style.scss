@@ -2,4 +2,7 @@ button.atom {
   outline: none;
   border: none;
   background-color: transparent;
+  &:disabled {
+    cursor: default;
+  }
 }

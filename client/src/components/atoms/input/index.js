@@ -6,6 +6,7 @@ const createInputAtom = ({
   placeholder = "",
   size = "large",
   type = "text",
+  custom = "",
 }) => {
   const isNotSupportedSize = !INPUT_SIZE_TYPE.includes(size);
 
@@ -17,6 +18,9 @@ const createInputAtom = ({
 
   $input.setAttribute("type", type);
   $input.classList.add("atom", `atom-input-size-${size}`);
+  if (custom) {
+    $input.classList.add(custom);
+  }
   $input.placeholder = placeholder;
   $input.addEventListener("input", onChange);
 

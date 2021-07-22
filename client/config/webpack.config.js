@@ -11,13 +11,14 @@ import {
   organismPath,
   pagePath,
   publicPath,
-  serverPath,
   templatePath,
   utilPath,
 } from "./paths.js";
 import setBabelConfig from "./babel-config.js";
 import setScssConfig from "./scss-config.js";
 import setFileConfig from "./file-config.js";
+import setDevelopmentConfig from "./webpack-development.js";
+import setProductionConfig from "./webpack-production.js";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -28,21 +29,13 @@ const clientConfig = {
   devtool: isDev ? "cheap-module-source-map" : "hidden-source-map",
   entry: entryPath,
   output: {
-    filename: "bundle.js",
+    filename: "[name].js",
     path: distPath,
-    publicPath: publicPath,
-  },
-  watch: false,
-  devServer: {
-    contentBase: distPath,
-    hot: true,
-    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ["!server.js"],
     }),
@@ -63,22 +56,14 @@ const clientConfig = {
   },
 };
 
-const serverConfig = {
-  name: "server",
-  target: "node",
-  mode: "development",
-  entry: serverPath,
-  output: {
-    filename: "server.js",
-    path: distPath,
-  },
-  module: {
-    rules: [],
-  },
-};
-
 setBabelConfig(clientConfig);
 setFileConfig(clientConfig);
 setScssConfig(clientConfig, isDev);
+
+if (isDev) {
+  setDevelopmentConfig(clientConfig);
+} else {
+  setProductionConfig(clientConfig);
+}
 
 export default clientConfig;

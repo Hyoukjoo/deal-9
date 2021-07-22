@@ -6,7 +6,7 @@ const createTables = async () => {
       id INT AUTO_INCREMENT,
       name VARCHAR(255),
       location VARCHAR(255),
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       PRIMARY KEY (id)
     )    
   `;
@@ -25,10 +25,12 @@ const createTables = async () => {
       id INT AUTO_INCREMENT,
       user_id INT NOT NULL,
       location_id INT NOT NULL,
+      price INT,
       title VARCHAR(255),
-      description VARCHAR(255),
+      content VARCHAR(255),
       status VARCHAR(255),
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      thumbnail VARCHAR(255),
+      timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,      
       PRIMARY KEY (id),
       FOREIGN KEY (location_id) REFERENCES locations (id),
       FOREIGN KEY (user_id) REFERENCES users (id)
@@ -70,7 +72,7 @@ const createTables = async () => {
       id INT AUTO_INCREMENT,
       src VARCHAR(255),
       product_id INT NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       PRIMARY KEY (id),
       FOREIGN KEY (product_id) REFERENCES products (id)
     )    
@@ -107,7 +109,7 @@ const createTables = async () => {
       is_read BOOLEAN,
       user_id INT NOT NULL,
       chat_room_id INT NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       PRIMARY KEY (id),
       FOREIGN KEY (user_id) REFERENCES users (id),
       FOREIGN KEY (chat_room_id) REFERENCES chat_rooms (id)

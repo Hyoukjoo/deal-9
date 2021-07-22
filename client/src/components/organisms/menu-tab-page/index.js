@@ -3,7 +3,10 @@ import {
   createProductListItemOrganism,
   createChatItemOrganism,
 } from "@organisms";
+
 import { createTextAtom } from "@atoms";
+import { createIconButtonMolecule, createMenuButtonMolecule } from "@molecules";
+import { GRAY1, PRIMARY1 } from "@common/styles/color.js";
 
 const getEmptyTabPage = (tab) => {
   const $wrapper = document.createElement("div");
@@ -34,13 +37,24 @@ const getEmptyTabPage = (tab) => {
   return $wrapper;
 };
 
-const getTabPage = (tab, list) => {
+const getTabPage = ({
+  tab,
+  list,
+  onClickHeart,
+  onClickModify,
+  onClickDelete,
+}) => {
   const $ul = document.createElement("ul");
   if (tab === 0) {
     list.forEach((product) => {
+      const $menu = createMenuButtonMolecule({
+        onClickModify,
+        onClickDelete,
+        color: GRAY1,
+      });
       const $salesItem = createProductListItemOrganism({
         ...product,
-        leftUpMenu: "",
+        productHeaderButton: $menu,
       });
       const $li = document.createElement("li");
       $ul.append($li);
@@ -53,9 +67,17 @@ const getTabPage = (tab, list) => {
     });
   } else if (tab === 2) {
     list.forEach((product) => {
+      const $heart = createIconButtonMolecule({
+        type: "heart",
+        with: "20px",
+        height: "20px",
+        color: PRIMARY1,
+        fill: PRIMARY1,
+        onClick: onClickHeart,
+      });
       const $bookmarkItem = createProductListItemOrganism({
         ...product,
-        leftUpMenu: "",
+        productHeaderButton: $heart,
       });
       const $li = document.createElement("li");
       $ul.append($li);
@@ -66,9 +88,21 @@ const getTabPage = (tab, list) => {
   return $ul;
 };
 
-const createMenuTabPageOrganism = ({ tab, list }) => {
+const createMenuTabPageOrganism = ({
+  tab,
+  list,
+  onClickHeart,
+  onClickModify,
+  onClickDelete,
+}) => {
   if (list?.length) {
-    return getTabPage(tab, list);
+    return getTabPage({
+      tab,
+      list,
+      onClickHeart,
+      onClickModify,
+      onClickDelete,
+    });
   } else {
     return getEmptyTabPage(tab);
   }

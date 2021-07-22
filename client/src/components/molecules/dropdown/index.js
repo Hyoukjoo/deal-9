@@ -5,7 +5,8 @@ const createDropdownMolecule = ({ dropper, items, top, right, left, down }) => {
   const $dropdown = document.createElement("div");
   const $dropdownList = document.createElement("ul");
   const $dropbutton = createButtonAtom({
-    onClick: () => {
+    onClick: (e) => {
+      e.stopPropagation();
       $dropdownList.classList.toggle("dropdown-list-active");
     },
   });

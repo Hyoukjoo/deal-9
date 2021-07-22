@@ -1,0 +1,23 @@
+button.fab-button {
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-primary1);
+  border-radius: 50%;
+
+  &:hover {
+    background-color: var(--color-primary3);
+  }
+
+  &:active {
+    background-color: var(--color-primary1);
+    border: 2px solid var(--color-primary2);
+  }
+
+  &:disabled {
+    background-color: var(--color-primary2);
+  }
+
+  & > img {
+    color: var(--color-white);
+  }
+}

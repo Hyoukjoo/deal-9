@@ -1,11 +1,11 @@
-import { USER, LOCATION } from "@common/path.js";
+import { LOCATION } from "@common/path.js";
 
 import LocationTemplate from "@templates/user/location/index.js";
 import { createLocationButtonMolecule } from "@molecules";
 import { createBackdropPopupInputOrganism } from "@organisms";
 import { clearChild } from "@utils/render.js";
 
-const path = USER + LOCATION;
+const path = LOCATION;
 
 let states = {
   locations: [],

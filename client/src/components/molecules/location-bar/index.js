@@ -3,10 +3,14 @@ import { createIconAtom, createTextAtom } from "@atoms";
 
 const createLocationBarMolecule = ({ location }) => {
   const $locationBar = document.createElement("div");
-  const $icon = createIconAtom({ type: "map-pin" });
+  const $icon = createIconAtom({
+    type: "map-pin",
+    width: "16px",
+    height: "16px",
+  });
   const $locationText = createTextAtom({
     type: "span",
-    size: "medium",
+    size: "small",
     text: location,
   });
 

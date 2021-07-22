@@ -1,8 +1,8 @@
 import { createSignupTemplate } from "@templates";
-import { USER, SIGNUP, LOGOUT } from "@common/path.js";
 import { signupRequest } from "../../../../remotes/UserRemote.js";
+import { SIGNUP, LOGOUT } from "@common/path.js";
 
-const path = USER + SIGNUP;
+const path = SIGNUP;
 let username = "";
 let location = "";
 const locationRE = /([가-힇\d]+[동]$)/;
