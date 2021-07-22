@@ -14,7 +14,7 @@ const signup = async (req, res) => {
       });
     }
 
-    const result = await UserRepository.findByName(username);
+    const result = await UserRepository.findUserByName(username);
     const isExistedUser = result[0][0] !== undefined;
 
     if (isExistedUser) {
@@ -37,7 +37,7 @@ const login = async (req, res) => {
   try {
     const { username } = req.body;
 
-    const result = await UserRepository.findByName(username);
+    const result = await UserRepository.findUserByName(username);
 
     const user = result[0][0];
 
@@ -78,9 +78,13 @@ const logout = async (req, res) => {
 
 const getMyInfo = async (req, res) => {
   try {
-    const { username } = res.locals.user;
+    const { userId } = res.locals.user;
 
-    res.json({ username });
+    const result = await UserRepository.findUserById(userId);
+
+    const user = result[0][0];
+
+    res.json({ user });
   } catch (e) {
     console.error(e);
 
