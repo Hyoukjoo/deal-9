@@ -5,39 +5,27 @@ import { GRAY3, PRIMARY1 } from "@common/styles/color.js";
 import { getRouter } from "@utils/router";
 import { replaceDomElement } from "@utils/render";
 import { addProductRequest } from "../../../remotes/ProductRemote.js";
+import { getContext } from "../../../context.js";
 
-const state = new Proxy(
-  {
-    title: "",
-    previewImages: [],
-    // TODO IconAtom, DB, state 공유
-    images: [],
-    categoryList: [
-      { id: 1, name: "디지털기기", src: "/public/icons/digital.svg" },
-      { id: 2, name: "생활가전", src: "/public/icons/life.svg" },
-      { id: 3, name: "가구/인테리어", src: "/public/icons/furniture.svg" },
-      { id: 4, name: "게임/취미", src: "/public/icons/game.svg" },
-      { id: 5, name: "생활/가공식품", src: "/public/icons/food.svg" },
-      { id: 6, name: "스포츠/레저", src: "/public/icons/sport.svg" },
-      { id: 7, name: "여성패션/잡화", src: "/public/icons/skirt.svg" },
-      { id: 8, name: "남성패션/잡화", src: "/public/icons/clothe.svg" },
-      { id: 9, name: "유아동", src: "/public/icons/kids.svg" },
-      { id: 10, name: "뷰티/미용", src: "/public/icons/veauti.svg" },
-      { id: 11, name: "반려동물", src: "/public/icons/pet.svg" },
-      { id: 12, name: "도서/티켓/음반", src: "/public/icons/book.svg" },
-      { id: 13, name: "식물", src: "/public/icons/plant.svg" },
-      { id: 14, name: "기타 중고 물품", src: "/public/icons/etc.svg" },
-    ],
-    categories: [],
-    price: null,
-    content: "",
-    isValid: false,
-    location: { id: 1, name: "화양동" },
-  },
-  {
-    set: stateSetHandler,
-  }
-);
+const initState = () =>
+  new Proxy(
+    {
+      title: "",
+      previewImages: [],
+      categoryList: getContext().categoryList,
+      images: [],
+      categories: [],
+      price: null,
+      content: "",
+      isValid: false,
+      location: { id: 1, name: "화양동" },
+    },
+    {
+      set: stateSetHandler,
+    }
+  );
+
+let state = initState();
 
 function stateSetHandler(stateObj, prop, value) {
   stateObj[prop] = value;
@@ -63,8 +51,11 @@ function stateSetHandler(stateObj, prop, value) {
 
 const onInputTitle = (e) => (state.title = e.target.value);
 const onInputContent = (e) => (state.content = e.target.value);
-const onClickBackButton = (_) => getRouter().back();
 const onChangeFileInput = (e) => [...e.target.files].forEach(readInputFile);
+const onClickBackButton = (_) => {
+  state = initState();
+  getRouter().back();
+};
 const onInputPrice = (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, "");
   e.target.value = `₩ ${(+e.target.value).toLocaleString()}`;
@@ -84,12 +75,16 @@ const onClickSendBitton = (e) => {
   addProductRequest(
     state.title,
     state.content,
+    state.price,
     state.userId || 1,
     state.location.id,
     state.categories,
     state.images
   )
-    .then((ret) => console.log(ret))
+    .then((ret) => {
+      state = initState();
+      getRouter().push("/");
+    })
     .catch((e) => console.log(e));
 };
 function onClickCategoryButton() {
@@ -124,10 +119,6 @@ const Post = {
 export default Post;
 
 function formValidation() {
-  console.log(state.title);
-  console.log(state.previewImages.length);
-  console.log(state.categories.length);
-  console.log(state.content);
   if (
     state.title &&
     state.previewImages.length &&

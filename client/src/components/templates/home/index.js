@@ -3,7 +3,11 @@ import {
   createMainHeaderOrganism,
   createProductListItemOrganism,
 } from "@organisms";
-import { createFabButtonMolecule, createIconButtonMolecule } from "@molecules";
+import {
+  createFabButtonMolecule,
+  createIconButtonMolecule,
+  createEmptyMolecule,
+} from "@molecules";
 import { PRIMARY1 } from "@common/styles/color.js";
 
 const createHomeTemplate = ({
@@ -14,6 +18,7 @@ const createHomeTemplate = ({
   onClickCategory,
   onClickMenu,
   onClickUser,
+  onClickProductItem,
 }) => {
   const $homeTemplate = document.createElement("div");
   const $header = createMainHeaderOrganism({
@@ -22,8 +27,10 @@ const createHomeTemplate = ({
     onClickMenu,
     onClickUser,
   });
-  const $productList = document.createElement("ul");
 
+  const $main = document.createElement("main");
+
+  const $productList = document.createElement("ul");
   productList.forEach((product) => {
     const $heart = createIconButtonMolecule({
       type: "heart",
@@ -34,6 +41,7 @@ const createHomeTemplate = ({
     });
     const $productListItem = createProductListItemOrganism({
       ...product,
+      onClickProductItem,
       productHeaderButton: $heart,
       location,
     });
@@ -44,7 +52,11 @@ const createHomeTemplate = ({
     onClick: onClickAdd,
   });
 
-  $homeTemplate.append($header, $productList, $addButton);
+  const $empty = createEmptyMolecule();
+
+  $main.append(productList.length ? $productList : $empty);
+
+  $homeTemplate.append($header, $main, $addButton);
   $homeTemplate.classList.add("home-template");
 
   return $homeTemplate;

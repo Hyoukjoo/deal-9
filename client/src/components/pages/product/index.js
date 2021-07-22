@@ -1,32 +1,33 @@
-import { createTextAtom } from "@atoms";
-import { getRouter } from "@utils/router.js";
+import { createProductTemplate } from "@templates";
 import { PRODUCT } from "@common/path.js";
-
-const state = {};
+import { getContext, setContext } from "../../../context.js";
+import { getRouter } from "@utils/router.js";
+import { getProductRequest } from "../../../remotes/ProductRemote.js";
 
 const path = PRODUCT;
 
-const getPage = () => {
-  const router = getRouter();
+const onClickBackButton = () => getRouter().back();
+const onClickModify = () => {};
+const onClickDelete = () => {};
 
-  const $section = document.createElement("section");
-  const $title = createTextAtom({ type: "h1", size: "large", text: "product" });
-  const $button = document.createElement("button");
-
-  $button.addEventListener("click", (e) => {
-    router.back();
+const getPage = (props) => {
+  const productId = props?.data?.id;
+  if (!productId) {
+    getRouter().back();
+  }
+  return getProductRequest(productId).then((product) => {
+    return createProductTemplate({
+      onClickBackButton,
+      onClickModify,
+      onClickDelete,
+      ...product,
+    });
   });
-
-  $button.textContent = "back!";
-
-  $section.append($title, $button);
-
-  return $section;
 };
 
-const Product = {
+const Category = {
   path,
   getPage,
 };
 
-export default Product;
+export default Category;
