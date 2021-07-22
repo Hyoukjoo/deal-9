@@ -3,10 +3,10 @@ import multerS3 from "multer-s3";
 import aws from "aws-sdk";
 import env from "../../config/env.js";
 
-const { AWS_ACCSS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = env;
+const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = env;
 
 const s3 = new aws.S3({
-  accessKeyId: AWS_ACCSS_KEY_ID,
+  accessKeyId: AWS_ACCESS_KEY_ID,
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
   region: AWS_REGION,
 });

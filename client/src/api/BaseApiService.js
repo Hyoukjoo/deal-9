@@ -16,12 +16,8 @@ export default class BaseApiService {
   post(path, body, config) {
     return fetch(`${this.url}/${path}`, {
       method: "post",
-      body: JSON.stringify(body),
+      body,
       ...config,
-      headers: {
-        "Content-Type": "application/json",
-        ...config?.[headers],
-      },
     });
   }
 

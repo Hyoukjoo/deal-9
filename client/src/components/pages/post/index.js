@@ -4,12 +4,14 @@ import { POST } from "@common/path.js";
 import { GRAY3, PRIMARY1 } from "@common/styles/color.js";
 import { getRouter } from "@utils/router";
 import { replaceDomElement } from "@utils/render";
+import { addProductRequest } from "../../../remotes/ProductRemote.js";
 
 const state = new Proxy(
   {
     title: "",
-    uploadImgList: [],
+    previewImages: [],
     // TODO IconAtom, DB, state 공유
+    images: [],
     categoryList: [
       { id: 1, name: "디지털기기", src: "/public/icons/digital.svg" },
       { id: 2, name: "생활가전", src: "/public/icons/life.svg" },
@@ -26,11 +28,11 @@ const state = new Proxy(
       { id: 13, name: "식물", src: "/public/icons/plant.svg" },
       { id: 14, name: "기타 중고 물품", src: "/public/icons/etc.svg" },
     ],
-    category: [],
+    categories: [],
     price: null,
     content: "",
     isValid: false,
-    location: "화양동",
+    location: { id: 1, name: "화양동" },
   },
   {
     set: stateSetHandler,
@@ -44,9 +46,9 @@ function stateSetHandler(stateObj, prop, value) {
     case "title":
       toggleCategoryList();
     case "content":
-    case "uploadImgList":
+    case "previewImages":
       updateUploadImgList();
-    case "category":
+    case "categories":
     case "price":
     case "content":
       formValidation();
@@ -74,20 +76,29 @@ const onInputPrice = (e) => {
 };
 const onClickCancelButton = (e) => {
   const $button = e.target.closest("button");
-  state.uploadImgList = state.uploadImgList.filter(
+  state.previewImages = state.previewImages.filter(
     (_, idx) => idx !== +$button.dataset.idx
   );
 };
+const onClickSendBitton = (e) => {
+  addProductRequest(
+    state.title,
+    state.content,
+    state.userId || 1,
+    state.location.id,
+    state.categories,
+    state.images
+  )
+    .then((ret) => console.log(ret))
+    .catch((e) => console.log(e));
+};
 function onClickCategoryButton() {
   this.classList.toggle("active");
-  const { categoryId, categoryName } = this.dataset;
+  const { categoryId } = this.dataset;
   if (this.classList.contains("active")) {
-    state.category = [
-      ...state.category,
-      { id: categoryId, name: categoryName },
-    ];
+    state.categories = [...state.categories, categoryId];
   } else {
-    state.category = state.category.filter((c) => c.id !== categoryId);
+    state.categories = state.categories.filter((id) => id !== categoryId);
   }
 }
 
@@ -101,6 +112,7 @@ const getPage = () => {
     onClickCancelButton,
     onClickCategoryButton,
     onInputPrice,
+    onClickSendBitton,
   });
 };
 
@@ -112,10 +124,14 @@ const Post = {
 export default Post;
 
 function formValidation() {
+  console.log(state.title);
+  console.log(state.previewImages.length);
+  console.log(state.categories.length);
+  console.log(state.content);
   if (
     state.title &&
-    state.uploadImgList.length &&
-    state.category.length &&
+    state.previewImages.length &&
+    state.categories.length &&
     state.content
   ) {
     state.isValid = true;
@@ -143,7 +159,7 @@ function toggleCategoryList() {
 
 function updateUploadImgList() {
   const $proudctUploadImgList = createProductUploadImgListOrganism({
-    uploadImgList: state.uploadImgList,
+    previewImages: state.previewImages,
     onChangeFileInput,
     onClickCancelButton,
   });
@@ -152,8 +168,9 @@ function updateUploadImgList() {
 
 function readInputFile(file) {
   const reader = new FileReader();
+  state.images = [...state.images, file];
   reader.onload = (e) => {
-    state.uploadImgList = [...state.uploadImgList, e.target.result];
+    state.previewImages = [...state.previewImages, e.target.result];
   };
   reader.readAsDataURL(file);
 }

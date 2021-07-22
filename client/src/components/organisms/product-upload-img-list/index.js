@@ -5,18 +5,18 @@ import {
 } from "@molecules";
 
 const createProductUploadImgListOrganism = ({
-  uploadImgList,
+  previewImages,
   onChangeFileInput,
   onClickCancelButton,
 }) => {
   const $imgList = document.createElement("ul");
   const $addImgButton = createAddImgButtonMolecule({
     onChange: onChangeFileInput,
-    imgCount: uploadImgList.length,
+    imgCount: previewImages.length,
   });
 
   $imgList.append($addImgButton);
-  uploadImgList.forEach((src, idx) => {
+  previewImages.forEach((src, idx) => {
     const $uploadImg = createProductUploadImgMolecule({
       src,
       idx,

@@ -16,14 +16,15 @@ const getProducts = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const images = req.files.mapa((file) => file.location);
-    const { userId, locationId, title, content, status, categories } = req.body;
+    const images = req.files.map((file) => file.location);
+    const { userId, locationId, title, content, categories } = req.body;
+
     await ProductRepository.createProduct({
       userId,
       locationId,
       title,
       content,
-      status,
+      status: "ing",
       images,
       categories,
     });
