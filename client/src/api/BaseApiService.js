@@ -1,9 +1,14 @@
-const API_URL = "http://localhost:4000";
+const API_URL = "https://52.78.113.15:4000";
 
 export default class BaseApiService {
   constructor(path) {
     const url = new URL(`api/${path}`, API_URL);
     this.url = url.href;
+  }
+  qureyString(paramsObj) {
+    return Object.entries(paramsObj)
+      .map(([k, v]) => k + "=" + v)
+      .join("&");
   }
 
   get(path, config) {

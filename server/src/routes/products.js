@@ -6,7 +6,7 @@ import upload from "../utils/upload.js";
 const router = Router();
 
 router.get("/", ProductController.getProducts);
-
+router.get("/:id", ProductController.getProduct);
 router.post("/", upload.array("images"), ProductController.createProduct);
 
 router.put("/:id", (req, res) => {});

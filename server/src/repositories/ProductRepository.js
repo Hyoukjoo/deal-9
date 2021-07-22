@@ -8,12 +8,15 @@ const createProduct = async ({
   status,
   images,
   categories,
+  price,
 }) => {
+  categories = Array.isArray(categories) ? categories : [categories];
+
   const query = `/* SQL */
-    INSERT INTO products (user_id, location_id, title, content, status, thumbnail)
+    INSERT INTO products (user_id, location_id, title, content, status, thumbnail, price)
     VALUES ('${userId}', '${locationId}', '${title}', '${content}', '${status}', '${
     images[0]
-  }');
+  }', '${price}');
 
     SET @inserted_proudct_id = LAST_INSERT_ID();
 
@@ -49,9 +52,35 @@ const getProducts = async ({ locationId, categoryId }) => {
   return result[0];
 };
 
+const getProduct = async (id) => {
+  const query = `/* SQL */
+      SELECT p.*, u.name username, l.name location FROM products p
+      JOIN users u ON u.id = p.user_id
+      JOIN locations l on l.id = p.location_id
+      WHERE p.id = ${id}
+    `;
+  const result = await db.query(query);
+  if (result[0].length) {
+    return result[0][0];
+  }
+  return null;
+};
+
+const getProductCategories = async (productId) => {
+  const query = `/* SQL */
+      SELECT c.* FROM categories c
+      JOIN (SELECT * FROM products_categories WHERE product_id = ${productId}) pc
+      ON c.id = pc.category_id;
+    `;
+  const result = await db.query(query);
+  return result[0];
+};
+
 const ProductRepository = {
   createProduct,
   getProducts,
+  getProduct,
+  getProductCategories,
 };
 
 export default ProductRepository;
