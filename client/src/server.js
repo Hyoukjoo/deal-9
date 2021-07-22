@@ -3,9 +3,10 @@ import path from "path";
 import http from "http";
 import express from "express";
 import compression from "compression";
+import env from "../config/env.js";
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = env.PORT || 80;
 const version = process.env.VERSION || "1.0.0";
 const __dirname = process.cwd();
 
