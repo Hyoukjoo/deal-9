@@ -1,4 +1,4 @@
-import { render } from "./render.js";
+import { renderPage } from "./render.js";
 
 // TODO: String.startsWith 를 사용해서 params 가지고 오기
 const routes = {};
@@ -12,7 +12,7 @@ const registerRoute = (route) => {
 
 const push = (pathname, data = {}) => {
   window.history.pushState(data, pathname, window.location.origin + pathname);
-  render({
+  renderPage({
     target: $root,
     getPage: routes[pathname],
     props: { router, pathname: window.location.pathname, data },
@@ -39,14 +39,14 @@ export const initRouter = ($app, routesInfos) => {
   window.onpopstate = (e) => {
     const { pathname } = window.location;
 
-    render({
+    renderPage({
       target: $root,
       getPage: routes[pathname],
       props: { router, pathname },
     });
   };
 
-  render({
+  renderPage({
     target: $root,
     getPage: routes[window.location.pathname],
     props: { router, pathname: window.location.pathname },
