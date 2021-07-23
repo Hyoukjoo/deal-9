@@ -3,33 +3,17 @@ import LocationTemplate from "@templates/user/location/index.js";
 import { createLocationButtonMolecule } from "@molecules";
 import { createBackdropPopupInputOrganism } from "@organisms";
 import { clearChild } from "@utils/render.js";
+import {
+  addLocationRequest,
+  getMyLocationRequest,
+  removeLocationRequest,
+} from "../../../../remotes/UserRemote.js";
 
 const path = LOCATION;
 
 let states = {
   locations: [],
 };
-
-const requestLocationInfo = () =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({ locations: ["자양동"] });
-    }, 300);
-  });
-
-const requestRemoveLocation = (location) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ status: 200 });
-    }, 300);
-  });
-
-const requestAddLocation = (location) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ status: 200 });
-    }, 300);
-  });
 
 const getPage = ({ router }) => {
   const renderLocationButton = (locations) => {
@@ -64,11 +48,13 @@ const getPage = ({ router }) => {
     const onClickPerformButton = (e) => {
       const location = $popupInput.querySelector("input").value;
 
-      requestAddLocation(location).then(({ status }) => {
-        if (status === 200) {
+      addLocationRequest(location).then((isOk) => {
+        if (isOk) {
           states = { locations: [...states.locations, location] };
 
           renderLocationButton(states.locations);
+        } else {
+          alert("동네 등록 실패");
         }
 
         $popupInput.remove();
@@ -100,8 +86,10 @@ const getPage = ({ router }) => {
   };
 
   const removeLocation = (e) => {
-    requestRemoveLocation().then(({ status }) => {
-      if (status === 200) {
+    const location = e.target.closest("button").firstChild.textContent;
+
+    removeLocationRequest(location).then((isOk) => {
+      if (isOk) {
         const removedLocation =
           e.target.closest("button").firstChild.textContent;
 
@@ -112,11 +100,15 @@ const getPage = ({ router }) => {
         };
 
         renderLocationButton(states.locations);
+      } else {
+        alert("삭제 실패");
       }
     });
   };
 
-  return requestLocationInfo().then(({ locations }) => {
+  return getMyLocationRequest().then(({ locations }) => {
+    locations = locations.map((location) => location.name);
+
     states = { locations };
 
     const $template = LocationTemplate({

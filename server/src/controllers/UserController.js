@@ -14,7 +14,7 @@ const signup = async (req, res) => {
       });
     }
 
-    const result = await UserRepository.findByName(username);
+    const result = await UserRepository.findUserByName(username);
     const isExistedUser = result[0][0] !== undefined;
 
     if (isExistedUser) {
@@ -37,7 +37,7 @@ const login = async (req, res) => {
   try {
     const { username } = req.body;
 
-    const result = await UserRepository.findByName(username);
+    const result = await UserRepository.findUserByName(username);
 
     const user = result[0][0];
 
@@ -78,9 +78,35 @@ const logout = async (req, res) => {
 
 const getMyInfo = async (req, res) => {
   try {
-    const { username } = res.locals.user;
+    const { userId } = res.locals.user;
 
-    res.json({ username });
+    const result = await UserRepository.findUserById(userId);
+
+    const user = result[0][0];
+
+    res.json({ user });
+  } catch (e) {
+    console.error(e);
+
+    res.status(500).json({ message: "서버 에러!" });
+  }
+};
+
+const getMyLocation = async (req, res) => {
+  try {
+    const { userId } = res.locals.user;
+
+    let results = await UserRepository.findLocationsOfUserByUserId(userId);
+
+    results = await Promise.all(
+      results[0].map((result) =>
+        UserRepository.findLocationById(result.location_id)
+      )
+    );
+
+    const locations = results.map((result) => result[0][0]);
+
+    res.json({ locations });
   } catch (e) {
     console.error(e);
 
@@ -91,7 +117,7 @@ const getMyInfo = async (req, res) => {
 const addLocation = async (req, res) => {
   try {
     const { location } = req.body;
-    const { userId, username } = req.locals.user;
+    const { userId } = res.locals.user;
 
     const isDong = locationRE.test(location);
 
@@ -102,19 +128,31 @@ const addLocation = async (req, res) => {
 
     const existLocation = await UserRepository.findLocationByName(location);
 
-    const isNotExistLocation = existLocation[0][0] === undefined;
+    let locationInfo = existLocation[0][0];
+
+    const isNotExistLocation = locationInfo === undefined;
 
     if (isNotExistLocation) {
-      UserRepository.createLocation(location);
+      const result = await UserRepository.createLocation(location);
+
+      locationInfo = { id: result[0].insertId };
     }
+
+    await UserRepository.addLocation(userId, locationInfo.id);
 
     const locationsOfUser = await UserRepository.findLocationsOfUserByUserId(
       userId
     );
 
-    console.log(result);
+    const results = await Promise.all(
+      locationsOfUser[0].map(({ location_id }) => {
+        return UserRepository.findLocationById(location_id);
+      })
+    );
 
-    res.json({ message: "동네 등록 성공!", data: {} });
+    const data = results.map((result) => result[0][0]);
+
+    res.json({ message: "동네 등록 성공!", data });
   } catch (e) {
     console.error(e);
 
@@ -122,13 +160,31 @@ const addLocation = async (req, res) => {
   }
 };
 
-const removeLocation = async (req, res) => {};
+const removeLocation = async (req, res) => {
+  try {
+    const { location } = req.params;
+    const { userId } = res.locals.user;
+
+    let result = await UserRepository.findLocationByName(location);
+
+    const locationId = result[0][0].id;
+
+    result = await UserRepository.removeLocation(userId, locationId);
+
+    res.send();
+  } catch (e) {
+    console.error(e);
+
+    res.status(500).json({ message: "서버 에러!" });
+  }
+};
 
 const UserController = {
   signup,
   login,
   logout,
   getMyInfo,
+  getMyLocation,
   addLocation,
   removeLocation,
 };

@@ -14,8 +14,10 @@ router.post("/logout", UserController.logout);
 
 router.post("/location", AuthMiddleware.verify, UserController.addLocation);
 
+router.get("/location", AuthMiddleware.verify, UserController.getMyLocation);
+
 router.delete(
-  "/location",
+  "/location/:location",
   AuthMiddleware.verify,
   UserController.removeLocation
 );

@@ -20,11 +20,11 @@ export const getPage = ({ router }) => {
     });
   };
 
-  return getMyInfoRequest().then(({ username }) => {
+  return getMyInfoRequest().then(({ user }) => {
     const $logoutTemplate = createLogoutTemplate({
       onClickBackButton,
       onClickLogoutButton,
-      username,
+      username: user.name,
     });
 
     return $logoutTemplate;

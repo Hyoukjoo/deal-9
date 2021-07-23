@@ -24,6 +24,10 @@ class UserApiService extends BaseApiService {
   getMyInfo() {
     return this.get("");
   }
+
+  getMyLocation() {
+    return this.get("location");
+  }
 }
 
 export default new UserApiService("users");

@@ -9,8 +9,8 @@ export const signupRequest = (username, location) => {
         return result.json().then(({ message }) => message);
       }
     });
-  } catch (e) {
-    throw e;
+  } catch {
+    alert("서버 에러가 발생했습니다.");
   }
 };
 
@@ -23,8 +23,8 @@ export const loginRequest = (username) => {
         return result.json().then(({ message }) => message);
       }
     });
-  } catch (e) {
-    throw e;
+  } catch {
+    alert("서버 에러가 발생했습니다.");
   }
 };
 
@@ -32,7 +32,7 @@ export const logoutRequest = () => {
   try {
     return UserApiService.logout().then((result) => result.ok);
   } catch {
-    throw e;
+    alert("서버 에러가 발생했습니다.");
   }
 };
 
@@ -40,20 +40,30 @@ export const addLocationRequest = (location) => {
   try {
     return UserApiService.addLocation(location).then((result) => result.ok);
   } catch (e) {
-    throw e;
+    alert("서버 에러가 발생했습니다.");
+  }
+};
+
+export const getMyLocationRequest = () => {
+  try {
+    return UserApiService.getMyLocation().then((result) => result.json());
+  } catch {
+    alert("서버 에러가 발생했습니다.");
   }
 };
 
 export const removeLocationRequest = (location) => {
   try {
     return UserApiService.removeLocation(location).then((result) => result.ok);
-  } catch {}
+  } catch {
+    alert("서버 에러가 발생했습니다.");
+  }
 };
 
 export const getMyInfoRequest = () => {
   try {
     return UserApiService.getMyInfo().then((result) => result.json());
-  } catch (e) {
-    throw e;
+  } catch {
+    alert("서버 에러가 발생했습니다.");
   }
 };
