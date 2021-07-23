@@ -36,17 +36,17 @@ const createProduct = async ({
 };
 
 const getProducts = async ({ locationId, categoryId }) => {
+  // TODO: WHERE location_id = ${locationId} 추가
+
   const query = categoryId
     ? `/* SQL */
       SELECT p.* FROM products as p
       JOIN ( 
         SELECT * FROM products_categories WHERE category_id = ${categoryId}
-        ) as pc ON p.id = pc.product_id      
-      WHERE location_id = ${locationId}
+        ) as pc ON p.id = pc.product_id            
     `
     : `/* SQL */
-      SELECT * FROM products
-      WHERE location_id = ${locationId}
+      SELECT * FROM products      
     `;
   const result = await db.query(query);
   return result[0];
