@@ -29,7 +29,7 @@ const getPage = ({ router, isLogin, user, ...props }) => {
       onClickUser,
       onClickCategory,
       onClickProductItem,
-      location: user.location,
+      location: user?.location || "광진구",
       productList,
     });
   });

@@ -26,15 +26,19 @@ export const getPage = ({ router, isLogin }) => {
     });
   };
 
-  return getMyInfoRequest().then(({ user }) => {
-    const $logoutTemplate = createLogoutTemplate({
-      onClickBackButton,
-      onClickLogoutButton,
-      username: user.name,
-    });
+  return getMyInfoRequest()
+    .then(({ user }) => {
+      const $logoutTemplate = createLogoutTemplate({
+        onClickBackButton,
+        onClickLogoutButton,
+        username: user.name,
+      });
 
-    return $logoutTemplate;
-  });
+      return $logoutTemplate;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 };
 
 const UserLogout = {
