@@ -1,3 +1,4 @@
+import env from "../../config/env.js";
 import { AUTH_TOKEN, SEVEN_DAYS_MILLISECONDS } from "../common/constant.js";
 import { locationRE, usernameRE } from "../common/regex.js";
 import UserRepository from "../repositories/UserRepository.js";
@@ -54,6 +55,7 @@ const login = async (req, res) => {
       httpOnly: true,
       maxAge: SEVEN_DAYS_MILLISECONDS,
       signed: true,
+      domain: env.CLIENT_DOMAIN,
     });
 
     res.json({ message: "로그인 성공!", data: { user } });
