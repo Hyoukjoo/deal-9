@@ -24,7 +24,7 @@ export default class BaseApiService {
         config.body = JSON.stringify(data);
         break;
       case "formData":
-        headers["Content-Type"] = "multipart/form-data";
+        // headers["Content-Type"] = undefined;
         config.body = data;
         break;
       default:
