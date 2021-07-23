@@ -1,21 +1,29 @@
 import { createLoginTemplate } from "@templates";
-import { LOGIN } from "@common/path.js";
+import { LOGIN, LOGOUT, HOME } from "@common/path.js";
+import { loginRequest } from "../../../../remotes/UserRemote.js";
 
 const path = LOGIN;
-let id;
+let username = "";
 
 export const getPage = ({ router }) => {
   const onChangeInput = (e) => {
-    id = e.target.value;
+    username = e.target.value;
+
+    e.target.nextSibling.disabled = username.trim().length < 1;
   };
 
   const onClickLoginButton = () => {
-    //test;;;;
-    console.log(id);
+    loginRequest(username).then((result) => {
+      if (result === true) {
+        router.push(LOGOUT);
+      } else {
+        alert(result);
+      }
+    });
   };
 
   const onClickBackButton = () => {
-    router.back();
+    router.push(HOME);
   };
 
   const $loginTemplate = createLoginTemplate({

@@ -1,4 +1,6 @@
-const API_URL = "https://52.78.113.15:4000";
+import env from "../../config/env.js";
+
+const API_URL = env.API_URL || "http://localhost:4000";
 
 export default class BaseApiService {
   constructor(path) {
@@ -11,64 +13,65 @@ export default class BaseApiService {
       .join("&");
   }
 
-  get(path, config) {
+  #baseFetch({ path, data, contentType, ...config }) {
+    const headers = {
+      ...config?.["headers"],
+    };
+
+    switch (contentType) {
+      case "json":
+        headers["Content-Type"] = "application/json";
+        config.body = JSON.stringify(data);
+        break;
+      case "formData":
+        headers["Content-Type"] = "multipart/form-data";
+        config.body = data;
+        break;
+      default:
+        break;
+    }
+
     return fetch(`${this.url}/${path}`, {
+      mode: "cors",
+      credentials: "include",
+      headers,
+      ...config,
+    });
+  }
+
+  get(path, config = {}) {
+    return this.#baseFetch({
       method: "get",
+      path,
       ...config,
     });
   }
 
-  post(path, body, config) {
-    return fetch(`${this.url}/${path}`, {
+  post(path, data, { contentType = "json", ...config } = {}) {
+    return this.#baseFetch({
       method: "post",
-      body,
+      path,
+      data,
+      contentType,
       ...config,
     });
   }
 
-  put(path, body, config) {
-    return fetch(`${this.url}/${path}`, {
+  put(path, data, { contentType = "json", ...config } = {}) {
+    return this.#baseFetch({
       method: "put",
-      body: JSON.stringify(body),
+      path,
+      data,
+      contentType,
       ...config,
-      headers: {
-        "Content-Type": "application/json",
-        ...config?.[headers],
-      },
     });
   }
 
-  delete(path, config) {
-    return fetch(`${this.url}/${path}`, {
+  delete(path, config = {}) {
+    return this.#baseFetch({
       method: "delete",
+      path,
       ...config,
     });
   }
 }
-
-// export const base_request = ({ method, path, body, config }) => {
-//   return fetch({
-//     method,
-//     url: url.href,
-//     headers,
-//     credentials: "include",
-//     body,
-//     ...config,
-//   });
-// };
-
-// export const get_request = ({ path, ...config }) => {
-//   return base_request({ method: "get", path, ...config });
-// };
-
-// export const post_request = ({ path, body, ...config }) => {
-//   return base_request({ method: "post", path, body, ...config });
-// };
-
-// export const put_request = ({ path, body, ...config }) => {
-//   return base_request({ method: "put", path, body, ...config });
-// };
-
-// export const delete_request = ({ path, ...config }) => {
-//   return base_request({ method: "delete", path, ...config });
-// };

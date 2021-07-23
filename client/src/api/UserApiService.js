@@ -18,7 +18,11 @@ class UserApiService extends BaseApiService {
   }
 
   removeLocation(location) {
-    return this.delete("location", { location });
+    return this.delete(`location/${location}`);
+  }
+
+  getMyInfo() {
+    return this.get("");
   }
 }
 

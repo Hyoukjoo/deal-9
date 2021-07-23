@@ -3,7 +3,7 @@ import Token from "../utils/token.js";
 
 const verify = (req, res, next) => {
   try {
-    const token = req.cookies[AUTH_TOKEN];
+    const token = req.signedCookies[AUTH_TOKEN];
 
     if (token === undefined) {
       res.status(401).json({ message: "쿠키가 유효하지 않습니다." });

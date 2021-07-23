@@ -76,6 +76,18 @@ const logout = async (req, res) => {
   }
 };
 
+const getMyInfo = async (req, res) => {
+  try {
+    const { username } = res.locals.user;
+
+    res.json({ username });
+  } catch (e) {
+    console.error(e);
+
+    res.status(500).json({ message: "서버 에러!" });
+  }
+};
+
 const addLocation = async (req, res) => {
   try {
     const { location } = req.body;
@@ -116,6 +128,7 @@ const UserController = {
   signup,
   login,
   logout,
+  getMyInfo,
   addLocation,
   removeLocation,
 };
