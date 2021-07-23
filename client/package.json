@@ -10,7 +10,7 @@
     "build:dev": "NODE_ENV=development webpack --config config/webpack.config.js",
     "build:prd": "NODE_ENV=production webpack --config config/webpack.config.js && cp ./src/server.js ./dist/server.js",
     "start:dev": "concurrently \"npm run build:dev\" \"npm run server\"",
-    "start": "pm2 start ecosystem.config.cjs",
+    "start": "pm2 delete all && pm2 start ecosystem.config.cjs",
     "deploy": "./deploy.sh"
   },
   "author": "hyeokjoo, donggin",

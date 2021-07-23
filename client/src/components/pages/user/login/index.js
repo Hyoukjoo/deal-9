@@ -5,7 +5,13 @@ import { loginRequest } from "../../../../remotes/UserRemote.js";
 const path = LOGIN;
 let username = "";
 
-export const getPage = ({ router }) => {
+export const getPage = ({ router, isLogin }) => {
+  if (isLogin) {
+    alert("이미 로그인 했습니다.");
+    router.push(LOGOUT);
+    return;
+  }
+
   const onChangeInput = (e) => {
     username = e.target.value;
 

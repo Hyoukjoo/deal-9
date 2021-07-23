@@ -7,7 +7,13 @@ import {
 
 const path = LOGOUT;
 
-export const getPage = ({ router }) => {
+export const getPage = ({ router, isLogin }) => {
+  if (!isLogin) {
+    alert("로그인이 필요합니다");
+    router.push(LOGIN);
+    return;
+  }
+
   const onClickBackButton = () => {
     router.push(HOME);
   };

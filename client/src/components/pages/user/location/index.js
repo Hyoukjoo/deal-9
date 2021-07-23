@@ -1,4 +1,4 @@
-import { LOCATION, HOME } from "@common/path.js";
+import { LOCATION, HOME, LOGIN } from "@common/path.js";
 import LocationTemplate from "@templates/user/location/index.js";
 import { createLocationButtonMolecule } from "@molecules";
 import { createBackdropPopupInputOrganism } from "@organisms";
@@ -15,7 +15,12 @@ let states = {
   locations: [],
 };
 
-const getPage = ({ router }) => {
+const getPage = ({ router, isLogin }) => {
+  if (!isLogin) {
+    alert("로그인이 필요합니다");
+    router.push(LOGIN);
+    return;
+  }
   const renderLocationButton = (locations) => {
     const $locationButtonWrapper = document.querySelector(
       ".location-button-wrapper"
