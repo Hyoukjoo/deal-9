@@ -4,7 +4,8 @@ module.exports = {
       name: "deal-9-server",
       script: "./src/app.js",
       exec_mode: "cluster",
-      instances: 0,
+      instances: 1,
+      watch: true,
     },
   ],
 };
