@@ -1,4 +1,5 @@
 import create404Page from "@pages/404";
+import { getMyInfoRequest } from "../remotes/UserRemote.js";
 
 export const clearChild = (parent) => {
   while (parent.lastChild) {
@@ -6,21 +7,30 @@ export const clearChild = (parent) => {
   }
 };
 
-export const render = ({ target, getPage, props }) => {
+export const renderPage = ({ target, getPage, props }) => {
   try {
     clearChild(target);
 
     if (typeof getPage === "function") {
       props = { ...props, $app: target };
-      const component = getPage(props);
 
-      if (component instanceof Promise) {
-        component.then((page) => {
-          target.append(page);
-        });
-      } else {
-        target.append(component);
-      }
+      getMyInfoRequest().then(({ user }) => {
+        const isLogin = user !== undefined;
+        props.isLogin = isLogin;
+        props.user = user;
+
+        const component = getPage(props);
+
+        if (component instanceof Promise) {
+          component.then((page) => {
+            target.append(page);
+          });
+        } else {
+          if (component !== undefined) {
+            target.append(component);
+          }
+        }
+      });
     } else {
       const $404Page = create404Page();
 
@@ -31,7 +41,7 @@ export const render = ({ target, getPage, props }) => {
   }
 };
 
-export const _render = (target, ...components) => {
+export const renderComponent = (target, ...components) => {
   clearChild(target);
 
   components = components.filter(Boolean);

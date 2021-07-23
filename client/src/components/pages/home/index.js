@@ -3,11 +3,9 @@ import { createIconButtonMolecule } from "@molecules";
 import { HOME } from "@common/path.js";
 import { PRIMARY1 } from "@common/styles/color.js";
 import { replaceDomElement } from "@utils/render.js";
-import { getRouter } from "@utils/router.js";
 import { getProductsRequest } from "../../../remotes/ProductRemote.js";
 import { getContext } from "../../../context.js";
-
-const state = {};
+import { LOGOUT, LOGIN } from "@common/path.js";
 
 const path = HOME;
 
@@ -15,13 +13,14 @@ const onClickHeart = (isBookmarked) => (e) => {
   e.stopPropagation();
   updateHeartButton(!isBookmarked, e);
 };
-const onClickAdd = () => getRouter().push("/post");
-const onClickMenu = () => getRouter().push("/menu");
-const onClickUser = () => getRouter().push("/user");
-const onClickCategory = () => getRouter().push("/category");
-const onClickProductItem = (id) => () => getRouter().push("/product", { id });
 
-const getPage = () => {
+const getPage = ({ router, isLogin, user, ...props }) => {
+  const onClickAdd = () => router.push("/post");
+  const onClickMenu = () => router.push("/menu");
+  const onClickUser = () => router.push(isLogin ? LOGOUT : LOGIN);
+  const onClickCategory = () => router.push("/category");
+  const onClickProductItem = (id) => () => router.push("/product", { id });
+
   const locationId = getContext().selectedLocation;
   const categoryId = getContext().selectedCategory;
   return getProductsRequest(locationId, categoryId).then((productList) => {

@@ -1,4 +1,4 @@
-import { _render } from "@utils/render";
+import { renderComponent } from "@utils/render";
 
 const initState = (initialState, template) => {
   const $root = document.getElementById("app");
@@ -8,7 +8,7 @@ const initState = (initialState, template) => {
       ...state,
       ...newState,
     };
-    _render($root, template({ ...state, setState }));
+    renderComponent($root, template({ ...state, setState }));
   };
   const getState = () => state;
 
