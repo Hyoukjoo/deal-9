@@ -2,7 +2,7 @@ import BaseApiService from "./BaseApiService.js";
 
 class ProductApiService extends BaseApiService {
   addProduct(formData) {
-    return this.post("", formData, {});
+    return this.post("", formData, { contentType: "formData" });
   }
   getProducts(locationId, categoryId) {
     const params = {};
