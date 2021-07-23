@@ -11,6 +11,9 @@ const env = {
   MYSQL_USER: process.env.MYSQL_USER,
   MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
   MYSQL_DATABASE: process.env.MYSQL_DATABASE,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  AWS_REGION: process.env.AWS_REGION,
 };
 
 export default env;

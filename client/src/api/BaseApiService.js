@@ -7,6 +7,11 @@ export default class BaseApiService {
     const url = new URL(`api/${path}`, API_URL);
     this.url = url.href;
   }
+  qureyString(paramsObj) {
+    return Object.entries(paramsObj)
+      .map(([k, v]) => k + "=" + v)
+      .join("&");
+  }
 
   #baseFetch({ path, data, contentType, ...config }) {
     const headers = {

@@ -7,7 +7,11 @@ import {
 import { createTextAtom } from "@atoms";
 import { getRouter } from "@utils/router.js";
 
-const createCategoryTemplate = ({ categoryList }) => {
+const createCategoryTemplate = ({
+  categoryList,
+  selectedCategory,
+  onClickCategory,
+}) => {
   const $categoryTemplate = document.createElement("div");
   const router = getRouter();
 
@@ -29,10 +33,12 @@ const createCategoryTemplate = ({ categoryList }) => {
   });
 
   const $categoryList = document.createElement("ul");
-  categoryList.forEach(({ src, name }) => {
+  categoryList.forEach(({ id, src, name }) => {
     const $categoryListItem = createCategoryListItemMolecule({
       text: name,
       src,
+      isSelected: id === selectedCategory,
+      onClick: onClickCategory(id),
     });
     const $li = document.createElement("li");
 

@@ -1,4 +1,4 @@
-import ProductRepository from "../repositories/products.js";
+import ProductRepository from "../repositories/ProductRepository.js";
 
 const getProducts = async (req, res) => {
   try {
@@ -14,18 +14,32 @@ const getProducts = async (req, res) => {
   }
 };
 
+const getProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const proudct = await ProductRepository.getProduct(id);
+    const categories = await ProductRepository.getProductCategories(id);
+    res.status(200).send({ ...proudct, categories });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ message: "서버 에러!" });
+  }
+};
+
 const createProduct = async (req, res) => {
   try {
-    const { userId, locationId, title, content, status, images, categories } =
-      req.body;
+    const images = req.files.map((file) => file.location);
+    const { userId, locationId, title, content, categories, price } = req.body;
+
     await ProductRepository.createProduct({
       userId,
       locationId,
       title,
       content,
-      status,
+      status: "ing",
       images,
       categories,
+      price,
     });
 
     res.status(204).send();
@@ -37,6 +51,7 @@ const createProduct = async (req, res) => {
 
 const ProductController = {
   getProducts,
+  getProduct,
   createProduct,
 };
 

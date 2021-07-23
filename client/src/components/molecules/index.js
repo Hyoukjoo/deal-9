@@ -22,6 +22,7 @@ import createIconWithTextMolecule from "@molecules/icon-with-text";
 import createCancelButtonMolecule from "@molecules/button/cancel";
 import createProductUploadImgMolecule from "@molecules/product-upload-img";
 import createMenuButtonMolecule from "@molecules/button/menu";
+import createEmptyMolecule from "@molecules/empty";
 
 export {
   createAddImgButtonMolecule,
@@ -48,4 +49,5 @@ export {
   createCancelButtonMolecule,
   createProductUploadImgMolecule,
   createMenuButtonMolecule,
+  createEmptyMolecule,
 };

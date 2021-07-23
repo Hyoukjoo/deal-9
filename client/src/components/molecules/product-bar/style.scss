@@ -5,6 +5,9 @@
   padding: 16px;
   .normal-button {
     margin-left: auto;
+    label {
+      color: var(--color-white);
+    }
   }
   .divider {
     margin: 0 16px;

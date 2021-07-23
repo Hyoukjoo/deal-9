@@ -3,7 +3,7 @@
   height: 140px;
   width: 100%;
   padding: 16px;
-
+  cursor: pointer;
   &-info {
     display: flex;
     flex-direction: column;
@@ -12,6 +12,13 @@
     header {
       display: flex;
       justify-content: space-between;
+      span {
+        display: inline-block;
+        max-width: 195px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
     main {
       display: flex;

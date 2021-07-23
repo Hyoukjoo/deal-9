@@ -5,10 +5,10 @@ import {
   createIconWithTextMolecule,
 } from "@molecules";
 import { createLinkAtom } from "@atoms";
-import { priceFormat } from "@utils/helper.js";
+import { priceFormat, timeAgo } from "@utils/helper.js";
 
 const createProductListItemOrganism = ({
-  src,
+  thumbnail,
   title,
   price,
   location,
@@ -16,10 +16,18 @@ const createProductListItemOrganism = ({
   chatCount,
   bookmarkCount,
   productHeaderButton,
+  onClickProductItem,
+  id,
 }) => {
   const $productListItem = document.createElement("li");
+  if (onClickProductItem) {
+    $productListItem.addEventListener("click", onClickProductItem(id));
+  }
 
-  const $productImg = createProductImgMolecule({ src, type: "large" });
+  const $productImg = createProductImgMolecule({
+    src: thumbnail,
+    type: "large",
+  });
 
   const $productInfo = document.createElement("section");
 
@@ -31,12 +39,12 @@ const createProductListItemOrganism = ({
   const $productInfoMain = document.createElement("main");
   const $locationAndTimestamp = createTextWithMiddotMolecule([
     location,
-    timestamp,
+    timeAgo(timestamp),
   ]);
   const $price = createLinkAtom({
     type: "span",
     size: "small",
-    text: priceFormat(price, "원"),
+    text: price === null ? "가격 미정" : priceFormat(price, "원"),
   });
   $productInfoMain.append($locationAndTimestamp, $price);
   $productInfo.classList.add("product-list-item-info");
@@ -44,18 +52,14 @@ const createProductListItemOrganism = ({
   const $productInfoFooter = document.createElement("footer");
   const $chatCount = createIconWithTextMolecule({
     iconType: "message-square",
-    text: chatCount,
+    text: chatCount || 0,
   });
   const $bookmarkCount = createIconWithTextMolecule({
     iconType: "heart",
-    text: bookmarkCount,
+    text: bookmarkCount || 0,
   });
-  if (bookmarkCount) {
-    $productInfoFooter.append($bookmarkCount);
-  }
-  if (chatCount) {
-    $productInfoFooter.append($chatCount);
-  }
+  $productInfoFooter.append($bookmarkCount);
+  $productInfoFooter.append($chatCount);
 
   $productInfo.append($productInfoHeader, $productInfoMain, $productInfoFooter);
   $productListItem.append($productImg, $productInfo);

@@ -5,6 +5,7 @@ import createLocationTemplate from "@templates/user/location";
 import createSignupTemplate from "@templates/user/signup";
 import createLogoutTemplate from "@templates/user/logout";
 import createPostTemplate from "@templates/post";
+import createProductTemplate from "@templates/product";
 
 export {
   createHomeTemplate,
@@ -14,4 +15,5 @@ export {
   createSignupTemplate,
   createLogoutTemplate,
   createPostTemplate,
+  createProductTemplate,
 };

@@ -1,5 +1,10 @@
 .category-list-item {
   display: inline-block;
+  &.selected {
+    span {
+      color: var(--color-primary1);
+    }
+  }
   div {
     margin: 0 auto;
   }

@@ -20,6 +20,7 @@ const createPostTemplate = ({
   onClickCategoryButton,
   onInputContent,
   onInputPrice,
+  onClickSendBitton,
 }) => {
   const $postTemplate = document.createElement("div");
   const $main = document.createElement("main");
@@ -36,9 +37,7 @@ const createPostTemplate = ({
     type: "check",
     color: GRAY3,
     disabled: true,
-    onClick: () => {
-      console.log("d");
-    },
+    onClick: onClickSendBitton,
   });
   const $header = createHeaderOrganism({
     type: "off-white",
@@ -47,7 +46,7 @@ const createPostTemplate = ({
     right: $sendButton,
   });
   const $uploadImgList = createProductUploadImgListOrganism({
-    uploadImgList: state.uploadImgList,
+    previewImages: state.previewImages,
     onChangeFileInput,
     onClickCancelButton,
   });
@@ -86,7 +85,9 @@ const createPostTemplate = ({
   $postContent.classList.add("post-input-wrapper");
 
   const $footer = document.createElement("footer");
-  const $locationBar = createLocationBarMolecule({ location: state.location });
+  const $locationBar = createLocationBarMolecule({
+    location: state.location.name,
+  });
 
   $postTemplate.append($header, $main, $footer);
   $main.append($uploadImgList, $postTitle, $postPrice, $postContent);
