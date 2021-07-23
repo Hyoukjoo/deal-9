@@ -19,7 +19,7 @@ const app = express();
 app.use(logger(isDev ? "dev" : "combine"));
 app.use(
   cors({
-    origin: `${CLIENT_PROTOCOL}://${CLIENT_DOMAIN}:${CLIENT_PORT}`,
+    origin: `${CLIENT_PROTOCOL}://${CLIENT_DOMAIN}`,
     credentials: true,
   })
 );
