@@ -62,7 +62,7 @@ const onInputPrice = (e) => {
   if (e.target.value === "₩ 0") {
     e.target.value = "";
   } else {
-    state.price = +e.target.value.substring(2).replace(",", "");
+    state.price = +e.target.value.substring(2).replaceAll(",", "");
   }
 };
 const onClickCancelButton = (e) => {
