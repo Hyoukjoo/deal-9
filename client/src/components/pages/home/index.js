@@ -1,11 +1,10 @@
 import { createHomeTemplate } from "@templates";
 import { createIconButtonMolecule } from "@molecules";
-import { HOME } from "@common/path.js";
 import { PRIMARY1 } from "@common/styles/color.js";
 import { replaceDomElement } from "@utils/render.js";
 import { getProductsRequest } from "../../../remotes/ProductRemote.js";
 import { getContext } from "../../../context.js";
-import { LOGOUT, LOGIN } from "@common/path.js";
+import { LOGOUT, LOGIN, HOME, POST, MENU, CATEGORY } from "@common/path.js";
 
 const path = HOME;
 
@@ -15,12 +14,11 @@ const onClickHeart = (isBookmarked) => (e) => {
 };
 
 const getPage = ({ router, isLogin, user, ...props }) => {
-  const onClickAdd = () => router.push("/post");
-  const onClickMenu = () => router.push("/menu");
+  const onClickAdd = () => router.push(isLogin ? POST : LOGIN);
+  const onClickMenu = () => router.push(isLogin ? MENU : LOGIN);
   const onClickUser = () => router.push(isLogin ? LOGOUT : LOGIN);
-  const onClickCategory = () => router.push("/category");
+  const onClickCategory = () => router.push(isLogin ? CATEGORY : LOGIN);
   const onClickProductItem = (id) => () => router.push("/product", { id });
-
   const locationId = getContext().selectedLocation;
   const categoryId = getContext().selectedCategory;
   return getProductsRequest(locationId, categoryId).then((productList) => {
@@ -31,7 +29,7 @@ const getPage = ({ router, isLogin, user, ...props }) => {
       onClickUser,
       onClickCategory,
       onClickProductItem,
-      location: "화양동",
+      location: user.location,
       productList,
     });
   });
