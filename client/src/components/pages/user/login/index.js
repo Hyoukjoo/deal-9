@@ -1,5 +1,5 @@
 import { createLoginTemplate } from "@templates";
-import { LOGIN, LOGOUT } from "@common/path.js";
+import { LOGIN, LOGOUT, HOME } from "@common/path.js";
 import { loginRequest } from "../../../../remotes/UserRemote.js";
 
 const path = LOGIN;
@@ -23,7 +23,7 @@ export const getPage = ({ router }) => {
   };
 
   const onClickBackButton = () => {
-    router.back();
+    router.push(HOME);
   };
 
   const $loginTemplate = createLoginTemplate({

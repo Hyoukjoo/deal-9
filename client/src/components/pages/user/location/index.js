@@ -1,5 +1,4 @@
-import { LOCATION } from "@common/path.js";
-
+import { LOCATION, HOME } from "@common/path.js";
 import LocationTemplate from "@templates/user/location/index.js";
 import { createLocationButtonMolecule } from "@molecules";
 import { createBackdropPopupInputOrganism } from "@organisms";
@@ -58,7 +57,7 @@ const getPage = ({ router }) => {
   };
 
   const onClickBackButton = () => {
-    router.back();
+    router.push(HOME);
   };
 
   const addLocation = (e) => {
